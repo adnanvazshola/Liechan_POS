@@ -1,9 +1,10 @@
-Liechan POS
+# Liechan POS
 
 ## Single Page Application using Livewire 8 and Livewire 2
 
 ### Ingredient
-   # Laravel 8      -> https://laravel.com/
-   # Livewire 2     -> https://laravel-livewire.com
-   # Turbolink      -> https://github.com/turbolinks/turbolinks & https://github.com/livewire/turbolinks
-   # AdminLTE       -> https://adminlte.io/
+    <ul>
+        <li><a href="https://laravel.com/">Laravel 8</a></li>
+        <li><a href="https://laravel-livewire.com/">Livewire</a></li>
+        <li><a href="https://adminlte.io/">AdminLTE</a></li>
+    </ul>
