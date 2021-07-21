@@ -1,6 +1,6 @@
 # Liechan POS
 
-## Single Page Application using Livewire 8 and Livewire 2
+## Single Page Application using Laravel 8 and Livewire 2
 
 ### Ingredient
 
