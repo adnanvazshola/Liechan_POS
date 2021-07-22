@@ -29,7 +29,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card card-success">
+                    <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">
                                 Tambah Transaksi
@@ -79,13 +79,13 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-success btn-sm w-100">Submit</button>
+                                <button type="submit" class="btn btn-primary btn-sm btn-block">Submit</button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="card card-success">
+                    <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Daftar Transaksi</h3>
                         </div>

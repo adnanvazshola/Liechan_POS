@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-success">
+    <div class="card-primary">
         <div class="card-header">
             <div class="card-title">Detail Karyawan</div>
             <div class="card-tools">

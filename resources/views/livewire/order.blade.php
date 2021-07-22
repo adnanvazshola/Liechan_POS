@@ -17,7 +17,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8 col-md-12">
+                <div class="col-lg-8 col-md-8 col-xs-12">
                     <div class="card card-primary">
                         <div class="card-header">
                             <div class="card-title">Makanan</div>
@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <div class="row">
                                 @foreach($makanan as $row)
-                                <div class="col-lg-4 col-md-3 col-sm-12 mb-4">
+                                <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
                                     <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
                                         <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
                                         <div class="card-body">
@@ -60,7 +60,7 @@
                         <div class="card-body">
                             <div class="row">
                                 @foreach($minuman as $row)
-                                <div class="col-lg-4 col-md-3 col-sm-12">
+                                <div class="col-lg-3 col-md-4 col-sm-12">
                                     <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
                                         <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
                                         <div class="card-body">
@@ -90,7 +90,7 @@
                         <div class="card-body">
                             <div class="row">
                                 @foreach($tambahan as $row)
-                                <div class="col-lg-4 col-md-3 col-sm-12">
+                                <div class="col-lg-3 col-md-4 col-sm-12">
                                     <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
                                         <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
                                         <div class="card-body">
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12">
+                <div class="col-lg-4 col-md-4 col-xs-12">
                     <div class="card card-primary sticky-top">
                         <div class="card-header">
                             <div class="card-title">Pembayaran</div>
