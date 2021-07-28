@@ -1,8 +1,8 @@
 # Liechan POS
 
-## Single Page Application using Laravel 8 and Livewire 2
+## Aplikasi POS dan Management dengan Laravel 8 and Livewire 2
 
-### Ingredient
+### Bahan
 
 <ul>
     <li><a href="https://laravel.com/">Laravel 8</a></li>
