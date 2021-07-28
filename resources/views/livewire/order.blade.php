@@ -1,15 +1,17 @@
-<div>
+<div class="pl-3 pr-3">
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Point of Sale</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Point of Sales</li>
+                    </ol>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">POS</li>
-                    </ol>
+                    <div class="float-sm-right">
+                        <button wire:click="historyOrders" class="btn btn-sm btn-outline-success rounded-pill">Riwayat Pesanan</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -21,16 +23,16 @@
                     <div class="card card-primary">
                         <div class="card-header">
                             <div class="card-title">Makanan</div>
-                            <div class="card-tools">
+                            {{-- <div class="card-tools">
                                 <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 @foreach($makanan as $row)
-                                <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+                                <div class="col-lg-3 col-md-4 col-xs-12 mb-4">
                                     <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
                                         <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
                                         <div class="card-body">
@@ -51,16 +53,16 @@
                     <div class="card card-primary">
                         <div class="card-header">
                             <div class="card-title">Minuman</div>
-                            <div class="card-tools">
+                            {{-- <div class="card-tools">
                                 <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 @foreach($minuman as $row)
-                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
                                     <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
                                         <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
                                         <div class="card-body">
@@ -81,16 +83,16 @@
                     <div class="card card-primary">
                         <div class="card-header">
                             <div class="card-title">Tambahan</div>
-                            <div class="card-tools">
+                            {{-- <div class="card-tools">
                                 <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 @foreach($tambahan as $row)
-                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
                                     <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
                                         <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
                                         <div class="card-body">
@@ -192,7 +194,9 @@
                                     <button class="btn btn-sm btn-block btn-danger" wire:click="removeTax">Hapus Pajak</button>
                                 </div>
                             </div>
-                            <button class="btn btn-sm btn-primary w-100 mt-3">Bayar</button>
+                            <form wire:submit.prevent="payment">
+                                <button class="btn btn-sm btn-primary w-100 mt-3">Bayar</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-    protected $table = "Transactions";
+    protected $table = "transactions";
     protected $guarded = [];
+
+    public function product()
+    {
+        return $this->hasMany(ProductTransaction::class, 'invoice', 'invoice');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

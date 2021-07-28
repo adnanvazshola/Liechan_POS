@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('adminLTE/plugins/fullcalendar-timegrid/main.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminLTE/plugins/fullcalendar-bootstrap/main.min.css') }}">
 @endpush
-<div>
+<div class="pl-3 pr-3">
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">

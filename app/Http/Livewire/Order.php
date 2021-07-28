@@ -5,8 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Product as ProductModel;
 use Carbon\Carbon;
-
-use function PHPSTORM_META\type;
+use App\Models\Order as OrderModel;
+use Cart;
 
 class Order extends Component
 {
@@ -150,5 +150,41 @@ class Order extends Component
     public function removeItem($rowId)
     {
         \Cart::session(Auth()->id())->remove($rowId);
+    }
+
+    public function saveTransaction()
+    {
+        $inv = 'INV'.microtime();
+
+        OrderModel::create([
+            'product_id'    => $this
+        ]);
+    }
+
+    public function payment()
+    {
+        $total  = \Cart::session(Auth()->id())->getTotal();
+        $cart   = \Cart::session(Auth()->id())->getContent();
+
+        $filterCart = $cart->map(function ($item){
+            return [
+                'id' => substr($item->id, 4,5),
+                'quantity' => $item->quantity,
+            ];
+        });
+
+        foreach ($filterCart as $row) {
+            $products = ProductModel::find($row['id']);
+
+            if($products->quantity === 0){
+                return session()->flash('error','Jumlah item kurang');
+            }
+            
+            $products->update([
+                'quantity' => $products->quantity - $row['quantity'],
+            ]);
+        }
+
+        Cart::session(Auth()->id())->clear();
     }
 }

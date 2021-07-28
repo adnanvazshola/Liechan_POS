@@ -9,7 +9,7 @@
         text-align: center;
     }
 @endpush
-<div>
+<div class="pl-3 pr-3">
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">

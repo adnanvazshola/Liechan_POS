@@ -95,7 +95,7 @@
             </nav>
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <a href="#" class="brand-link">
-                    <span class="brand-text font-weight-bold text-center ml-3">Liechan POS</span>
+                    <span class="brand-text text-center ml-3">Liechan <span class="font-weight-bold">POS</span></span>
                 </a>
                 <div class="sidebar">
                     <nav class="mt-2">
@@ -175,6 +175,7 @@
             </footer>
         </div>
         @livewireScripts
+        <script src="{{ asset('js/app.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
         <script src="{{ asset('adminLTE/plugins/jquery/jquery.min.js') }}"></script>
         @stack('js')
@@ -183,7 +184,6 @@
         <script src="{{ asset('adminLTE/dist/js/adminlte.js') }}"></script>
         <script src="{{ asset('adminLTE/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
         <script src="{{ asset('adminLTE/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
         <script>
             $(document).ready(function () {
                 if (!$.browser.webkit) {

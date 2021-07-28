@@ -4,15 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Product as ProductModel;
-use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 class Product extends Component
 {
-    use WithFileUploads;
-
-    public $name, $image, $price, $description, $quantity, $jenis_makanan, $id_product;
 
     public function render()
     {
@@ -26,54 +21,17 @@ class Product extends Component
             'tambahan'  => $tambahan,
         ]);
     }
-    public function store()
+
+    public function create()
     {
-        $this->validate([
-            'name'          => 'required',
-            'image'         => 'required|image',
-            'price'         => 'required',
-            'description'   => 'nullable',
-            'quantity'      => 'required',
-            'jenis_makanan' => 'required',
-        ]);
-
-        $imageName = md5($this->image.microtime().'.'.$this->image->extension());
-
-        Storage::putFileAs(
-            'public/images',
-            $this->image,
-            $imageName
-        );
-
-        ProductModel::updateOrCreate(['id' => $this->id_product], [
-            'name'          => $this->name,
-            'image'         => $imageName,
-            'description'   => $this->description,
-            'quantity'      => $this->quantity,
-            'price'         => $this->price,
-            'jenis_makanan' => $this->jenis_makanan,
-        ]);
-
-        session()->flash('info' , 'Product telah disimpan');
-
-        $this->name = '';
-        $this->description = '';
-        $this->quantity = '';
-        $this->price = '';
-        $this->jenis_makanan = '';
-        $this->image = '';
+        return redirect()->route('product.create');
     }
-
+    
     public function edit($id)
     {
         $product = ProductModel::find($id);
-        $this->id_product = $product->id;
-        $this->name = $product->name;
-        $this->description = $product->description;
-        $this->quantity = $product->quantity;
-        $this->price = $product->price;
-        $this->jenis_makanan = $product->jenis_makanan;
-        $this->image = $product->image;
+
+        return redirect()->route('product.edit', $product->id);
     }
 
     public function destroy($id)

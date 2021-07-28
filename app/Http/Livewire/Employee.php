@@ -8,7 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Employee as EmployeeModel;
 
 class Employee extends Component
-{
+{   
     public $name, $salary, $id_employee, $date;
     public $employeeName, $employeeSalary, $employeeAttendance;
     public $attendance = 0;
