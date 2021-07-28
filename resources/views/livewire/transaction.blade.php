@@ -40,9 +40,8 @@
                                 <th style="width: 10%">No.</th>
                                 <th style="width: 20%">Nama Transaksi</th>
                                 <th style="width: 15%">Dari / Kepada</th>
-                                <th style="width: 10%">Total</th>
                                 <th style="width: 10%">Jenis</th>
-                                <th style="width: 25%">Note</th>
+                                <th style="width: 15%">Tanggal</th>
                                 <th style="width: 10%">Aksi</th>
                             </tr>
                         </thead>
@@ -50,19 +49,18 @@
                             @forelse($transactions as $row)
                             <tr>
                                 <td class="text-uppercase">{{ $row->invoice }}</td>
-                                <td class="clickable warning dropdown-deliverable" wire:click="#">{{ $row->name }}</td>
+                                <td class="clickable warning dropdown-deliverable" wire:click="detail({{ $row->id }})">{{ $row->name }}</td>
                                 <td>{{ $row->to }}</td>
-                                <td>Rp. {{ number_format($row->amount,0,',','.') }}</td>
                                 <td>
                                     @if($row->type == 0)    
                                         <span class="badge badge-danger">Pengeluaran</span>
-                                    @elseif($row->type == 1)
+                                    @elseif($row->type == 1 || $row->type == 3)
                                         <span class="badge badge-success">Pemasukan</span>
                                     @else
                                         <span class="badge badge-warning">Error</span>
                                     @endif
                                 </td>
-                                <td>{{ $row->note }}</td>
+                                <td>{{ $row->created_at->format('d F Y') }}</td>
                                 <td>
                                     <button wire:click="edit({{ $row->id }})" class="btn btn-sm btn-outline-warning">
                                         <i class="far fa-edit"></i>

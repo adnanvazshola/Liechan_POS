@@ -16,7 +16,7 @@ class Transaction extends Component
     
     public function render()
     {
-        $transactions = TransactionModel::orderBy('created_at', 'DESC')->paginate(8);
+        $transactions = TransactionModel::orderBy('created_at', 'DESC')->where('type', '!=', 3)->paginate(8);
         return view('livewire.transaction', [
             'transactions' => $transactions,
         ]);
@@ -26,6 +26,7 @@ class Transaction extends Component
     {
         return redirect()->route('transaction.create');
     }
+
     public function edit($id)
     {
         $transaction = TransactionModel::find($id);
@@ -37,5 +38,12 @@ class Transaction extends Component
     {
         $transaction = TransactionModel::find($id);
         $transaction->delete();
+    }
+
+    public function detail($id)
+    {
+        $transaction = TransactionModel::find($id);
+
+        return redirect()->route('transaction.detail', $transaction->id);
     }
 }

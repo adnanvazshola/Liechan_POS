@@ -13,6 +13,7 @@ class Employee extends Component
     public $employeeName, $employeeSalary, $employeeAttendance;
     public $attendance = 0;
     public $detailEmployee = 0;
+    public $titleForm = 'Add Employee';
 
     public function render()
     {
@@ -60,12 +61,13 @@ class Employee extends Component
         $this->salary = '';
         $this->attendance = '0';
         $this->date = '2021-06-21 00:00:00';
+        $this->titleForm = 'Add Employee';
     }
 
     public function edit($id)
     {
         $employee = EmployeeModel::find($id);
-        $today = Carbon::today();
+        $this->titleForm    = 'Edit Employee';
         $this->id_employee  = $employee->id;
         $this->name         = $employee->name;
         $this->salary       = $employee->salary;
@@ -92,12 +94,30 @@ class Employee extends Component
         }
     }
 
-    public function resetAbsen($id)
+    public function resetAbsen()
     {
-        $employee = EmployeeModel::find($id);
-        EmployeeModel::where('id',$employee->id)->update([
-            'attendance' => 0,
-            'date'       => '',
-        ]);
+        $employees = EmployeeModel::all();
+        
+        $employee = $employees->map(function ($item){
+            return [
+                'id' => $item->id,
+                'attendance' => $item->attendance,
+                'date'  => $item->date,
+            ];
+        });
+
+        foreach ($employee as $row) {
+            $karyawan = EmployeeModel::find($row['id']);
+
+            if($karyawan->attendance === 0){
+                return session()->flash('error','Karyawan belum pernah melakukan absensi');
+            }
+            
+            $karyawan->update([
+                'attendance' => 0,
+                'date'  => '',
+            ]);
+            
+        }
     }
 }

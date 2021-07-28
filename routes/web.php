@@ -6,12 +6,14 @@ use App\Http\Controllers\KasirController;
 use App\Http\Livewire\Product;
 use App\Http\Livewire\Product\Edit as ProductEdit;
 use App\Http\Livewire\Product\Create as ProductCreate;
-use App\Http\Livewire\Order;
-use App\Http\Livewire\Category;
+use App\Http\Livewire\Pos;
+use App\Http\Livewire\POS\HoldInvoice as PosHoldInvoice;
+use App\Http\Livewire\POS\History as PosHistory;
 use App\Http\Livewire\Employee;
 use App\Http\Livewire\Transaction;
 use App\Http\Livewire\Transaction\Create as TransactionCreate;
 use App\Http\Livewire\Transaction\Edit as TransactionEdit;
+use App\Http\Livewire\Transaction\Detail as TransactionDetail;
 use App\Http\Livewire\Reservation;
 
 Route::get('/', function () {
@@ -30,6 +32,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/transaction', [Transaction::class,'__invoke'])->name('transaction.index');
         Route::get('/transaction/create', [TransactionCreate::class,'__invoke'])->name('transaction.create');
         Route::get('/transaction/edit/{id}', [TransactionEdit::class,'__invoke'])->name('transaction.edit');
+        Route::get('/transaction/detail/{id}', [TransactionDetail::class,'__invoke'])->name('transaction.detail');
     });
  
     Route::middleware(['kasir'])->group(function () {
@@ -40,9 +43,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/product/create', [ProductCreate::class, '__invoke'])->name('product.create');
     Route::get('/product/edit/{id}', [ProductEdit::class, '__invoke'])->name('product.edit');
 
-    Route::get('/point-of-sales', [Order::class,'__invoke'])->name('orders.index');
-
-    Route::get('/categories', [Category::class,'__invoke'])->name('category.index');
+    Route::get('/point-of-sales', [Pos::class,'__invoke'])->name('pos.index');
+    Route::get('/point-of-sales/unpaid-order', [PosHoldInvoice::class,'__invoke'])->name('pos.hold.invoice');
+    Route::get('/point-of-sales/history', [PosHistory::class,'__invoke'])->name('pos.history');
 
     Route::get('/reservation', [Reservation::class,'__invoke'])->name('reservation.index');
     

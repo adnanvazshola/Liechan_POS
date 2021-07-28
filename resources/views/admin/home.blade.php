@@ -66,8 +66,14 @@
                         </div>
                         <div class="col-sm-3 col-6">
                             <div class="description-block border-right">
-                                <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
-                                <h5 class="description-header">644</h5>
+                                @if($pesanan > $pesananBulanLalu)
+                                    <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{ number_format($untungPendapatan,0,",",".") }}%</span>
+                                @elseif($pesanan == $pesananBulanLalu)
+                                    <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> {{ number_format($untungPendapatan,0,",",".") }}%</span>
+                                @else
+                                    <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> {{ number_format($untungPendapatan,0,",",".") }}%</span>
+                                @endif
+                                <h5 class="description-header">{{ $pesanan }}</h5>
                                 <span class="description-text">TOTAL Pesanan</span>
                             </div>
                         </div>

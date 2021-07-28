@@ -14,13 +14,16 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Karyawan</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Transaction</a></li>
+                        <li class="breadcrumb-item active">Detail</li>
+                    </ol>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Karyawan</li>
-                    </ol>
+                    <div class="float-sm-right">
+                        <button wire:click="resetAbsen" class="btn btn-sm btn-outline-danger rounded-pill">Reset Absen</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,7 +34,7 @@
                 <div class="col-md-4">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Form Karyawan</h3>
+                            <h6 class="card-title">{{ $titleForm }}</h6>
                         </div>
                         <form wire:submit.prevent="store">
                             <div class="card-body">
@@ -60,16 +63,16 @@
                 <div class="col-md-8">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Daftar Karyawan</h3>
+                            <h6 class="card-title">Daftar Karyawan</h6>
                         </div>
                         <div class="card-body">
                             <table class="table w-100">
                                 <thead>
                                     <tr>
                                         <th style="width: 10%">No.</th>
-                                        <th style="width: 35%">Nama</th>
-                                        <th style="width: 15%">Absensi</th>
-                                        <th style="width: 40%">Action</th>
+                                        <th style="width: 45%">Nama</th>
+                                        <th style="width: 20%">Absensi</th>
+                                        <th style="width: 25%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,7 +86,6 @@
                                         <td>{{ $row->attendance }} hari</td>
                                         <td>
                                             <button wire:click="absen({{$row->id}})" class="btn btn-sm btn-outline-success">Absen</button>
-                                            <button wire:click="resetAbsen({{$row->id}})" class="btn btn-sm btn-outline-danger">Reset Absen</button>
                                             <button wire:click="edit({{$row->id}})" class="btn btn-sm btn-outline-warning">
                                                 <i class="far fa-edit"></i>
                                             </button>

@@ -1,47 +1,66 @@
-<div class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-condensed table-user-content">
-                    <tbody>
-                        <tr>
-                            <td style="width: 25%;">Jumlah transaksi</td>
-                            <td> : </td>
-                            <td class="text-capitalized">Rp. {{ number_format($row->amount,0,',','.') }}</td>
-                        </tr>
-                        <tr>
-                            <td>Tanggal</td>
-                            <td> : </td>
-                            <td>{{ date_format($row->created_at ,"d F Y") }}</td>
-                        </tr>
-                        <tr>
-                            <td>Metode</td>
-                            <td> : </td>
-                            <td>
-                                @if( $row->method == 0 )
-                                    Tunai
-                                @elseif( $row->method == 1)
-                                    Transfer
-                                @else
-                                    -
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Catatan</td>
-                            <td> : </td>
-                            <td>{{ $row->note ?? "tidak ada catatan" }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+<div class="pl-3 pr-3">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Transaction</a></li>
+                        <li class="breadcrumb-item active">Detail</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6">
+                    <div class="float-sm-right">
+                        <button wire:click="back" class="btn btn-sm btn-outline-danger rounded-pill">Kembali</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Detail Transaction <span class="font-weight-bold">{{ $name }}</span>
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>Invoice</th><td>:</td><td>{{ $invoice }}</td>
+                                </tr><tr>
+                                    <th>Name</th><td>:</td><td>{{ $name }}</td>
+                                </tr><tr>
+                                    <th>Dari / Ke</th><td>:</td><td>{{ $to }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>Total Transaksi</th><td>:</td><td>Rp. {{ number_format($amount,0,',','.') }}</td>
+                                </tr><tr>
+                                    <th>Jenis Transaksi</th><td>:</td>
+                                    <td>
+                                        @if($type == 0)    
+                                            <span class="text-danger">Pengeluaran</span>
+                                        @elseif($type == 1 || $row->type == 3)
+                                            <span class="text-success active">Pemasukan</span>
+                                        @else
+                                            <span class="text-warning">Error</span>
+                                        @endif
+                                    </td>
+                                </tr><tr>
+                                    <th>Note</th><td>:</td><td>{{ $note }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

@@ -116,7 +116,7 @@
                             </li>
                             @endif
                             <li class="nav-item">
-                                <a href="{{ route('orders.index') }}" class="nav-link">
+                                <a href="{{ route('pos.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-clipboard"></i>
                                     <p>POS</p>
                                 </a>
@@ -175,8 +175,8 @@
             </footer>
         </div>
         @livewireScripts
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
+        {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+        {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script> --}}
         <script src="{{ asset('adminLTE/plugins/jquery/jquery.min.js') }}"></script>
         @stack('js')
         <script src="{{ asset('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

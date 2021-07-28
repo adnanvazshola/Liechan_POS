@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-primary">
         <div class="card-header">
-            <div class="card-title">Detail Karyawan</div>
+            <h6 class="card-title">Detail Karyawan</h6>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="remove">
                   <i class="fas fa-times"></i>

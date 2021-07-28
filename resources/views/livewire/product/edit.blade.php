@@ -24,7 +24,7 @@
                     <div class="col-md-7">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <div class="card-title">Update Menu</div>
+                                <h6 class="card-title">Update Menu</h6>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
@@ -58,7 +58,7 @@
                     <div class="col-5">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <div class="card-title">Informasi Tambahan</div>
+                                <h6 class="card-title">Informasi Tambahan</h6>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">

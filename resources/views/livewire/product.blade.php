@@ -32,7 +32,7 @@
         <div class="container-fluid">
             <div class="card card-primary">
                 <div class="card-header">
-                    <div class="card-title">Makanan</div>
+                    <h6 class="card-title">Makanan</h6>
                     {{-- <div class="card-tools">
                         <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
@@ -92,7 +92,7 @@
             </div>
             <div class="card card-primary">
                 <div class="card-header">
-                    <div class="card-title">Minuman</div>
+                    <h6 class="card-title">Minuman</h6>
                     {{-- <div class="card-tools">
                         <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
@@ -152,7 +152,7 @@
             </div>
             <div class="card card-primary">
                 <div class="card-header">
-                    <div class="card-title">Tambahan</div>
+                    <h6 class="card-title">Tambahan</h6>
                     {{-- <div class="card-tools">
                         <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>

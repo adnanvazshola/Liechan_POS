@@ -9,11 +9,11 @@ class ProductTransaction extends Model
 {
     use HasFactory;
 
-    protected $table = 'product_transacations';
+    protected $table = 'product_transactions';
     protected $guarded = [];
 
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class,'product_id', 'id');
     }
 }
