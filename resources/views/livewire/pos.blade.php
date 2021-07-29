@@ -10,8 +10,8 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="float-sm-right">
-                        <button wire:click="holdInvoice" class="btn btn-sm btn-outline-success rounded-pill">Pesanan Belum Dibayar</button>
-                        <button wire:click="historyOrders" class="btn btn-sm btn-outline-info rounded-pill">History</button>
+                        <button wire:click="holdInvoice" class="btn btn-sm btn-outline-success rounded-pill mr-2"><i class="fas fa-file-invoice mr-2"></i>Pesanan Belum Dibayar</button>
+                        <button wire:click="historyOrders" class="btn btn-sm btn-outline-info rounded-pill"><i class="fas fa-history mr-2"></i>History</button>
                     </div>
                 </div>
             </div>
@@ -118,8 +118,17 @@
                             <h6 class="card-title">Pembayaran</h6>
                         </div>
                         <div class="card-body">
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="name">Nama Pemesan</span>
+                                </div>
+                                <input type="text" class="form-control" wire:model="name" aria-label="Sizing example input" aria-describedby="name">
+                              </div>
                             @if (session()->has('error'))
-                                <small class="text-danger">Menu habis</small>
+                                <small class="text-danger">Menu yang dipilih mencapai batas maksimal</small>
+                            @endif
+                            @if (session()->has('emptyCart'))
+                                <small class="text-danger">Cart masih kosong</small>
                             @endif
                             <div class="row">
                                 <div class="col-5">
@@ -157,26 +166,26 @@
                                 </div>
                             @empty
                                 <div class="row">
-                                    <span>Kosong</span>
+                                    <span class="col-12 text-center">No item in cart</span>
                                 </div>
                             @endforelse
                             <hr class="w-100">
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-md-7">
                                     <b>Subtotal</b>
                                 </div>
                                 <div class="col-md-5">
                                     <b>Rp. {{ number_format($summary['sub_total'],0,',','.') }}</b>
                                 </div>
-                            </div>
-                            <div class="row">
+                            </div> --}}
+                            {{-- <div class="row">
                                 <div class="col-md-7">
                                     <b>Pajak</b>
                                 </div>
                                 <div class="col-md-5">
                                     <b>Rp. {{ number_format($summary['tax'],0,',','.') }}</b>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row">
                                 <div class="col-7">
                                     <b>Total</b>
@@ -187,17 +196,28 @@
                             </div>
                         </div>
                         <div class="card-footer">
+                            {{-- <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-sm btn-block btn-success" wire:click="addTax">Add Tax</button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-sm btn-block btn-danger" wire:click="removeTax">Remove Tax</button>
+                                </div>
+                            </div> --}}
                             <div class="row">
                                 <div class="col-6">
-                                    <button class="btn btn-sm btn-block btn-success" wire:click="addTax">Tambah Pajak</button>
+                                    <form wire:submit.prevent="saveInvoice">
+                                        <input type="hidden" wire:model="name">
+                                        <button class="btn btn-sm btn-success btn-block"><i class="fas fa-save mr-2"></i>Save</button>
+                                    </form>
                                 </div>
                                 <div class="col-6">
-                                    <button class="btn btn-sm btn-block btn-danger" wire:click="removeTax">Hapus Pajak</button>
+                                    <form wire:submit.prevent="payment">
+                                        <input type="hidden" wire:model="name">
+                                        <button class="btn btn-sm btn-primary btn-block"><i class="fas fa-cash-register mr-2"></i>Payment</button>
+                                    </form>
                                 </div>
                             </div>
-                            <form wire:submit.prevent="saveInvoice">
-                                <button class="btn btn-sm btn-primary w-100 mt-3">Simpan</button>
-                            </form>
                         </div>
                     </div>
                 </div>

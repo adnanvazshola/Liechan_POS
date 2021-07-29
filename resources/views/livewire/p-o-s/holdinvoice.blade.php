@@ -42,7 +42,7 @@
                                     <tr>    
                                         <th>No.</th>
                                         <th>Invoice</th>
-                                        <th>Total</th>
+                                        <th>Nama</th>
                                         <th>Tanggal</th>
                                         <th>Action</th>
                                     </tr>
@@ -55,8 +55,8 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td class="text-uppercase">{{ $row->invoice }}</td>
-                                            <td>Rp.  {{ number_format($row->amount,0,',','.') }}</td>
-                                            <td>{{ $row->created_at->format('d F Y') }} || {{ $row->created_at->format('m:H') }}</td>
+                                            <td class="text-capitalize">{{ $row->to }}</td>
+                                            <td>{{ $row->created_at->format('d F Y') }} || {{ $row->created_at->format('H:m') }}</td>
                                             <td>
                                                 <button wire:click="show({{ $row->id }})" class="btn btn-sm btn-outline-success">Detail</button>
                                             </td>

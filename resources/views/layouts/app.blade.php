@@ -118,7 +118,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('pos.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-clipboard"></i>
-                                    <p>POS</p>
+                                    <p>Point of Sales</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -130,20 +130,20 @@
                             <li class="nav-item">
                                 <a href="{{ route('reservation.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-th"></i>
-                                    <p>Reservasi</p>
+                                    <p>Reservation</p>
                                 </a>
                             </li>
                             @if(Auth::user()->role == 'admin')
                             <li class="nav-item">
                                 <a href="{{ route('transaction.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-money-check-alt"></i>
-                                    <p>Transaksi</p>
+                                    <p>Finance</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('employee.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-user-alt"></i>
-                                    <p>Karyawan</p>
+                                    <p>Employee</p>
                                 </a>
                             </li>
                             @endif

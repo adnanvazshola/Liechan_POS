@@ -12,6 +12,7 @@ use Cart;
 
 class Pos extends Component
 {
+    public $name;
     public $tax = "0%";
 
     public function render()
@@ -188,18 +189,74 @@ class Pos extends Component
         }
 
         $user_id = Auth()->id();
-        
-        TransactionModel::create([
-            'invoice'   => $invoice,
-            'user_id'   => $user_id,
-            'name'      => 'Pesanan '.$invoice,
-            'to'        => 'Rumah Makan Liechan',
-            'amount'    => $total,
-            'type'      => 3,
-            'note'      => '',
-            'status'    => 0,
-        ]);
+        if (Cart::isEmpty()) {
+            return session()->flash('emptyCart', 'No item in cart');
+        }else {
+            TransactionModel::create([
+                'invoice'   => $invoice,
+                'user_id'   => $user_id,
+                'name'      => 'Pesanan '.$invoice,
+                'to'        => $this->name ?? 'unnamed',
+                'amount'    => $total,
+                'type'      => 3,
+                'note'      => '',
+                'status'    => 0,
+            ]);
+        }
 
+        $this->name = '';
+        Cart::session(Auth()->id())->clear();
+    }
+
+    public function payment()
+    {
+        $invoice = 'ENV'.Str::random(7);
+        $total  = \Cart::session(Auth()->id())->getTotal();
+        $cart   = \Cart::session(Auth()->id())->getContent();
+
+        $filterCart = $cart->map(function ($item){
+            return [
+                'id' => substr($item->id, 4,5),
+                'quantity' => $item->quantity,
+            ];
+        });
+
+        foreach ($filterCart as $row) {
+            $products = ProductModel::find($row['id']);
+
+            if($products->quantity === 0){
+                return session()->flash('error','Jumlah item kurang');
+            }
+            
+            $products->update([
+                'quantity' => $products->quantity - $row['quantity'],
+            ]);
+
+            ProductTransactionModel::create([
+                'product_id'    => $row['id'],
+                'invoice'       => $invoice,
+                'quantity'      => $row['quantity'],
+            ]);
+            
+        }
+
+        $user_id = Auth()->id();
+        if (Cart::isEmpty()) {
+            return session()->flash('emptyCart', 'No item in cart');
+        }else {
+            TransactionModel::create([
+                'invoice'   => $invoice,
+                'user_id'   => $user_id,
+                'name'      => 'Pesanan '.$invoice,
+                'to'        => $this->name ?? 'unnamed',
+                'amount'    => $total,
+                'type'      => 3,
+                'note'      => '',
+                'status'    => 1,
+            ]);
+        }
+
+        $this->name = '';
         Cart::session(Auth()->id())->clear();
     }
 

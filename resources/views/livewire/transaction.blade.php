@@ -31,6 +31,66 @@
         <div class="container-fluid">
             <div class="card card-primary">
                 <div class="card-header">
+                    <h6 class="card-title">Laporan Bulan {{ $today->translatedFormat('F Y') }}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-coins"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Pendapatan Kotor</span>
+                                    <span class="info-box-number text-sm">
+                                        Rp. {{ number_format($pendapatanKotor,0,',','.') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-coins"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Pengeluaran</span>
+                                    <span class="info-box-number text-sm">
+                                        Rp. {{ number_format($pengeluaran,0,',','.') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix hidden-md-up"></div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coins"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Pendapatan Bersih</span>
+                                    @if ($pendapatanKotor > $pengeluaran)
+                                        <span class="info-box-number text-sm">
+                                            Rp. {{ number_format($pendapatanBersih,0,',','.') }}
+                                        </span>
+                                    @else
+                                        <span class="info-box-number text-sm text-danger active">
+                                            Rp. {{ number_format($pendapatanBersih,0,',','.') }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-coins" style="color: white;"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Pendapatan Hari Ini</span>
+                                    <span class="info-box-number text-sm">
+                                        Rp. {{ number_format($pendapatanToday,0,',','.') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-primary">
+                <div class="card-header">
                     <h3 class="card-title">Daftar Transaksi</h3>
                 </div>
                 <div class="card-body">
@@ -49,7 +109,7 @@
                             @forelse($transactions as $row)
                             <tr>
                                 <td class="text-uppercase">{{ $row->invoice }}</td>
-                                <td class="clickable warning dropdown-deliverable" wire:click="detail({{ $row->id }})">{{ $row->name }}</td>
+                                <td class="clickable warning dropdown-deliverable font-weight-bold" wire:click="detail({{ $row->id }})">{{ $row->name }}</td>
                                 <td>{{ $row->to }}</td>
                                 <td>
                                     @if($row->type == 0)    
@@ -60,7 +120,7 @@
                                         <span class="badge badge-warning">Error</span>
                                     @endif
                                 </td>
-                                <td>{{ $row->created_at->format('d F Y') }}</td>
+                                <td>{{ $row->created_at->translatedFormat('d F Y') }}</td>
                                 <td>
                                     <button wire:click="edit({{ $row->id }})" class="btn btn-sm btn-outline-warning">
                                         <i class="far fa-edit"></i>

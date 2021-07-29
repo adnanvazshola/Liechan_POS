@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Transaction as TransactionModel;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Livewire\WithPagination;
 
@@ -16,9 +17,23 @@ class Transaction extends Component
     
     public function render()
     {
-        $transactions = TransactionModel::orderBy('created_at', 'DESC')->where('type', '!=', 3)->paginate(8);
+        //Mengambil data hari ini
+        $today = Carbon::now();
+        $bulan = $today->month;
+        $hari = $today->day;
+        
+        $transactions = TransactionModel::orderBy('created_at', 'DESC')->where('type', '!=', 3)->paginate(10);
+        $pendapatanKotor = TransactionModel::whereIn('type', [1,3])->whereMonth('created_at', $bulan)->sum('amount');
+        $pengeluaran = TransactionModel::where('type', 0)->whereMonth('created_at', $bulan)->sum('amount');
+        $pendapatanBersih = $pendapatanKotor-$pengeluaran;
+        $pendapatanPos = TransactionModel::where('type', 3)->whereDay('created_at', $hari)->sum('amount');
         return view('livewire.transaction', [
             'transactions' => $transactions,
+            'pendapatanKotor'=> $pendapatanKotor,
+            'pengeluaran'   => $pengeluaran,
+            'pendapatanBersih'=>$pendapatanBersih,
+            'pendapatanToday'=> $pendapatanPos, 
+            'today' => $today,
         ]);
     }
 
