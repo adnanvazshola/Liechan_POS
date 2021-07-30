@@ -1,6 +1,6 @@
 <div class="card card-primary sticky-top">
     <div class="card-header">
-        <h6 class="card-title">Detail <span class="text-uppercase font-weight-bold">{{ $invoice }}</span></h6>
+        <h6 class="card-title">Detail <span class="text-uppercase font-weight-bold">{{ $to }}</span></h6>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="remove">
               <i class="fas fa-times"></i>
@@ -20,20 +20,25 @@
             </div>
         </div>
         <hr>
+        @foreach ($cartItem as $row)
             <div class="row">
                 <div class="col-5">
-                    {{ $name }}<br>
+                    {{ $row['name'] }}<br>
                     <figcaption class="blockquote-footer">
-                        Rp. {{ number_format($productPrice,0,',','.') }}
+                        Rp. {{ number_format($row['singlePrice'],0,',','.') }}
                     </figcaption>
                 </div>
                 <div class="col-3">
-                    x{{ $quantity }}
+                    x{{ $row['quantity'] }}
                 </div>
+                @php
+                    $totalProductPrice = $row['quantity'] * $row['singlePrice'];
+                @endphp
                 <div class="col-4">
                     Rp. {{ number_format($totalProductPrice,0,',','.') }}
                 </div>
             </div>
+        @endforeach
         <hr class="w-100">
         <div class="row">
             <div class="col-7">

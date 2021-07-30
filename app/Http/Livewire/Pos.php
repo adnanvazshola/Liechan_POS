@@ -196,7 +196,7 @@ class Pos extends Component
                 'invoice'   => $invoice,
                 'user_id'   => $user_id,
                 'name'      => 'Pesanan '.$invoice,
-                'to'        => $this->name ?? 'unnamed',
+                'to'        => $this->name ?? '',
                 'amount'    => $total,
                 'type'      => 3,
                 'note'      => '',

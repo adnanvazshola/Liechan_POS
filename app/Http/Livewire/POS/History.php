@@ -8,7 +8,8 @@ use App\Models\Transaction;
 
 class History extends Component
 {
-    public $id_transaction, $invoice, $amount, $date, $id_product, $name, $quantity, $productPrice, $totalProductPrice, $status;
+    public $id_transaction, $invoice, $amount, $date, $id_product, $name, $quantity, $productPrice, $totalProductPrice, $status, $to;
+    public $cartItem;
     public $detailOrder = 0;
 
     public function render()
@@ -24,7 +25,7 @@ class History extends Component
     {
         $historyOrder = Transaction::with('product')->where('id', $id)->first();
         $productHistory = ProductTransaction::with('product')->where('invoice', $historyOrder->invoice)->get();
-        $singleProduct = $productHistory->map(function ($item){
+        $this->cartItem = $productHistory->map(function ($item){
             return [
                 'product_id'    => $item->product_id,
                 'name'          => $item->product->name,
@@ -32,15 +33,15 @@ class History extends Component
                 'quantity'      => $item->quantity,
             ];
         });
+        // dd($this->cartItem);
 
-        foreach ($singleProduct as $row) {
+        foreach ($this->cartItem as $row) {
             $this->id_product = $row['product_id'];
             $this->name = $row['name'];
             $this->quantity = $row['quantity'];   
             $this->productPrice = $row['singlePrice'];
-            $totalPrice = $row['quantity'] * $row['singlePrice'];
-            $this->totalProductPrice = $totalPrice;
         }
+        $this->to = $historyOrder->to;
         $this->invoice = $historyOrder->invoice;
         $this->amount = $historyOrder->amount;
         $this->id_transaction = $historyOrder->id;

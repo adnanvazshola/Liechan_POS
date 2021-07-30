@@ -8,8 +8,9 @@ use Livewire\Component;
 
 class HoldInvoice extends Component
 {
-    public $id_transaction, $invoice, $amount, $date, $id_product, $name, $quantity, $productPrice, $totalProductPrice, $status;
+    public $id_transaction, $invoice, $amount, $date, $id_product, $name, $quantity, $productPrice, $totalProductPrice, $status, $to;
     public $detailOrder = 0;
+    public $cartItem;
 
     public function render()
     {
@@ -23,7 +24,7 @@ class HoldInvoice extends Component
     {
         $historyOrder = Transaction::with('product')->where('id', $id)->first();
         $productHistory = ProductTransaction::with('product')->where('invoice', $historyOrder->invoice)->get();
-        $singleProduct = $productHistory->map(function ($item){
+        $this->cartItem = $productHistory->map(function ($item){
             return [
                 'product_id'    => $item->product_id,
                 'name'          => $item->product->name,
@@ -32,7 +33,7 @@ class HoldInvoice extends Component
             ];
         });
 
-        foreach ($singleProduct as $row) {
+        foreach ($this->cartItem as $row) {
             $this->id_product = $row['product_id'];
             $this->name = $row['name'];
             $this->quantity = $row['quantity'];   
@@ -40,6 +41,7 @@ class HoldInvoice extends Component
             $totalPrice = $row['quantity'] * $row['singlePrice'];
             $this->totalProductPrice = $totalPrice;
         }
+        $this->to = $historyOrder->to;
         $this->invoice = $historyOrder->invoice;
         $this->amount = $historyOrder->amount;
         $this->id_transaction = $historyOrder->id;
