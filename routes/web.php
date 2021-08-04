@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin;
-use App\Http\Controllers\KasirController;
+use App\Http\Livewire\Kasir;
 use App\Http\Livewire\Product;
 use App\Http\Livewire\Product\Edit as ProductEdit;
 use App\Http\Livewire\Product\Create as ProductCreate;
@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function(){
     });
  
     Route::middleware(['kasir'])->group(function () {
-        Route::get('kasir', [KasirController::class, 'index'])->name('kasir.dashboard');
+        Route::get('kasir', [Kasir::class, '__invoke'])->name('kasir.dashboard');
     });
  
     Route::get('/products', [Product::class,'__invoke'])->name('products.index');
