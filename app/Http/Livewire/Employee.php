@@ -14,6 +14,7 @@ class Employee extends Component
     public $attendance = 0;
     public $detailEmployee = 0;
     public $titleForm = 'Add Employee';
+    public $dates;
 
     public function render()
     {
@@ -85,11 +86,11 @@ class Employee extends Component
     {
         $employee = EmployeeModel::find($id);
         $today = Carbon::today();
-
-        if ($employee->date != $today) {
+        $this->dates = $today->format('Y-m-d');
+        if ($employee->date != $this->dates) {
             EmployeeModel::where('id',$employee->id)->update([
                 'attendance' => $employee->attendance+1,
-                'date'       => $today,
+                'date'       => $this->dates,
             ]);
         }
     }

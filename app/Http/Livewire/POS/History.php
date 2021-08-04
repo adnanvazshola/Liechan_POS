@@ -5,16 +5,20 @@ namespace App\Http\Livewire\POS;
 use Livewire\Component;
 use App\Models\ProductTransaction;
 use App\Models\Transaction;
+use Livewire\WithPagination;
 
 class History extends Component
 {
+    use WithPagination;
+
     public $id_transaction, $invoice, $amount, $date, $id_product, $name, $quantity, $productPrice, $totalProductPrice, $status, $to;
     public $cartItem;
     public $detailOrder = 0;
+    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
-        $historyOrders = Transaction::with('product')->orderBy('created_at', 'desc')->where('type', 3)->where('status', 1)->get();
+        $historyOrders = Transaction::with('product')->orderBy('created_at', 'desc')->where('type', 3)->where('status', 1)->paginate(10);
         
         return view('livewire.p-o-s.history',[
             'historyOrders' => $historyOrders,

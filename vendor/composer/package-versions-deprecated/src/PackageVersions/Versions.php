@@ -33,6 +33,7 @@ final class Versions
      * @internal
      */
     const VERSIONS          = array (
+  'asantibanez/livewire-charts' => 'v2.3.0@582ad340ddf0d138df67319073886f9314cccd0a',
   'asm89/stack-cors' => 'v2.0.3@9cb795bf30988e8c96dd3c40623c48a877bc6714',
   'brick/math' => '0.9.2@dff976c2f3487d42c1db75a3b180e2b9f0e72ce0',
   'composer/package-versions-deprecated' => '1.11.99.2@c6522afe5540d5fc46675043d3ed5a45a740b27c',
@@ -52,6 +53,7 @@ final class Versions
   'guzzlehttp/promises' => '1.4.1@8e7d04f1f6450fef59366c399cfad4b9383aa30d',
   'guzzlehttp/psr7' => '1.8.2@dc960a912984efb74d0a90222870c72c87f10c91',
   'intervention/image' => '2.6.0@a2d7238069bb01322f9c2a661449955434fec9c6',
+  'itsgoingd/clockwork' => 'v5.0.8@01686ebbf75d8e121dfb1b60e52f334858793830',
   'laravel/framework' => 'v8.45.1@dc2f0bb02c3eb4b27669d626bb3e810db8e7749d',
   'laravel/tinker' => 'v2.6.1@04ad32c1a3328081097a181875733fa51f402083',
   'laravel/ui' => 'v3.3.0@07d725813350c695c779382cbd6dac0ab8665537',
@@ -147,7 +149,7 @@ final class Versions
   'sebastian/type' => '2.3.2@0d1c587401514d17e8f9258a27e23527cb1b06c1',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'laravel/laravel' => 'dev-master@1c00e9d5265c301a5a6c02ca0f926a25b50373d3',
+  'laravel/laravel' => 'dev-master@856cfa06ac54106d2ed41df3f55da4c523588420',
 );
 
     private function __construct()

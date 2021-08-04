@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Transaction as TransactionModel;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 use Livewire\WithPagination;
 
 class Transaction extends Component

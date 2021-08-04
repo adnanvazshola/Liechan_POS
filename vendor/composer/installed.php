@@ -6,11 +6,20 @@
     'aliases' => 
     array (
     ),
-    'reference' => '1c00e9d5265c301a5a6c02ca0f926a25b50373d3',
+    'reference' => '856cfa06ac54106d2ed41df3f55da4c523588420',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
   array (
+    'asantibanez/livewire-charts' => 
+    array (
+      'pretty_version' => 'v2.3.0',
+      'version' => '2.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '582ad340ddf0d138df67319073886f9314cccd0a',
+    ),
     'asm89/stack-cors' => 
     array (
       'pretty_version' => 'v2.0.3',
@@ -476,6 +485,15 @@
       ),
       'reference' => 'a2d7238069bb01322f9c2a661449955434fec9c6',
     ),
+    'itsgoingd/clockwork' => 
+    array (
+      'pretty_version' => 'v5.0.8',
+      'version' => '5.0.8.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '01686ebbf75d8e121dfb1b60e52f334858793830',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -499,7 +517,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '1c00e9d5265c301a5a6c02ca0f926a25b50373d3',
+      'reference' => '856cfa06ac54106d2ed41df3f55da4c523588420',
     ),
     'laravel/sail' => 
     array (

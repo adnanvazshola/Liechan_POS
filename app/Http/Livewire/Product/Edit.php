@@ -12,7 +12,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $productId, $name, $image, $imageProduct, $price, $description, $quantity, $jenis_makanan;
+    public $productId, $name, $image, $imageProduct, $price, $description, $status, $jenis_makanan;
 
     public function mount($id)
     {
@@ -24,7 +24,7 @@ class Edit extends Component
             $this->imageProduct = $product->image;
             $this->price        = $product->price;
             $this->description  = $product->description;
-            $this->quantity     = $product->quantity;
+            $this->status       = $product->status;
             $this->jenis_makanan= $product->jenis_makanan;
         }
     }
@@ -36,7 +36,7 @@ class Edit extends Component
             'image'         => 'nullable|image|mimes: jpg,jpeg,png',
             'price'         => 'required|numeric',
             'description'   => 'nullable',
-            'quantity'      => 'required|numeric',
+            'status'        => 'required',
             'jenis_makanan' => 'required',
         ]);
         
@@ -58,7 +58,7 @@ class Edit extends Component
                     'name'          => $this->name,
                     'image'         => $imageName ?? $product->image,
                     'description'   => $this->description,
-                    'quantity'      => $this->quantity,
+                    'status'        => $this->status,
                     'price'         => $this->price,
                     'jenis_makanan' => $this->jenis_makanan,
                 ]);

@@ -1,6 +1,6 @@
 <div class="card card-primary sticky-top">
     <div class="card-header">
-        <h6 class="card-title">Detail <span class="text-uppercase font-weight-bold">{{ $to }}</span></h6>
+        <h6 class="card-title">Detail pesanan <span class="text-capitalize font-weight-bold">{{ $to }}</span></h6>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="remove">
               <i class="fas fa-times"></i>

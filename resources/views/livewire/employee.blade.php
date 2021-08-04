@@ -1,13 +1,15 @@
 @push('css')
-    .btn-outline-warning:hover{
-        color: white;
-    }
-    .clickable {
-        cursor: pointer;
-    }
-    .right-col {
-        text-align: center;
-    }
+    <style>
+        .btn-outline-warning:hover{
+            color: white;
+        }
+        .clickable {
+            cursor: pointer;
+        }
+        .right-col {
+            text-align: center;
+        }
+    </style>
 @endpush
 <div class="pl-3 pr-3">
     <div class="content-header">
@@ -15,9 +17,8 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Transaction</a></li>
-                        <li class="breadcrumb-item active">Detail</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Employee</li>
                     </ol>
                 </div>
                 <div class="col-sm-6">
@@ -85,7 +86,9 @@
                                         <td class="clickable font-weight-bold text-capitalize" wire:click="show({{ $row->id }})">{{ $row->name }}</td>
                                         <td>{{ $row->attendance }} hari</td>
                                         <td>
-                                            <button wire:click="absen({{$row->id}})" class="btn btn-sm btn-outline-success">Absen</button>
+                                            @if ($row->date != \Carbon\Carbon::now()->format('Y-m-d'))
+                                                <button wire:click="absen({{$row->id}})" class="btn btn-sm btn-outline-success">Absen</button>
+                                            @endif
                                             <button wire:click="edit({{$row->id}})" class="btn btn-sm btn-outline-warning">
                                                 <i class="far fa-edit"></i>
                                             </button>
@@ -108,6 +111,3 @@
         </div>
     </section>
 </div>
-@push('js')
-    
-@endpush

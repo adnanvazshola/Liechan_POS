@@ -1,10 +1,17 @@
+@push('css')
+    <style>
+        .btn-outline-info:hover{
+            color: white;
+        }
+    </style>
+@endpush
 <div class="pl-3 pr-3">
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item active">Point of Sales</li>
                     </ol>
                 </div>

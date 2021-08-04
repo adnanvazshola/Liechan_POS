@@ -17,9 +17,9 @@ class Pos extends Component
 
     public function render()
     {
-        $makanan    = ProductModel::orderBy('name', 'asc')->where('jenis_makanan', '0')->where('quantity','>', 0)->get();
-        $minuman    = ProductModel::orderBy('name', 'asc')->where('jenis_makanan', '1')->where('quantity','>', 0)->get();
-        $tambahan   = ProductModel::orderBy('name', 'asc')->where('jenis_makanan', '2')->where('quantity','>', 0)->get();
+        $makanan    = ProductModel::orderBy('name', 'asc')->where('jenis_makanan', '0')->where('status', 1)->get();
+        $minuman    = ProductModel::orderBy('name', 'asc')->where('jenis_makanan', '1')->where('status', 1)->get();
+        $tambahan   = ProductModel::orderBy('name', 'asc')->where('jenis_makanan', '2')->where('status', 1)->get();
 
         $condition = new \Darryldecode\Cart\CartCondition([
             'name'  => 'tax',
@@ -119,16 +119,12 @@ class Pos extends Component
         $cart = \Cart::session(Auth()->id())->getContent();
         $checkItem = $cart->whereIn('id',$rowId);
 
-        if ($product->quantity == $checkItem[$rowId]->quantity) {
-            session()->flash('error', 'menu habis');
-        }else {
-            \Cart::session(Auth()->id())->update($rowId, [
-                'quantity'  => [
-                    'relative'  => true,
-                    'value'     => 1,
-                ]
-            ]);
-        }
+        \Cart::session(Auth()->id())->update($rowId, [
+            'quantity'  => [
+                'relative'  => true,
+                'value'     => 1,
+            ]
+        ]);
     }
 
     public function minusItem($rowId)
@@ -158,6 +154,7 @@ class Pos extends Component
 
     public function saveInvoice()
     {
+        mt_rand(1000000, 9999999);
         $invoice = 'ENV'.Str::random(7);
         $total  = \Cart::session(Auth()->id())->getTotal();
         $cart   = \Cart::session(Auth()->id())->getContent();
@@ -172,20 +169,15 @@ class Pos extends Component
         foreach ($filterCart as $row) {
             $products = ProductModel::find($row['id']);
 
-            if($products->quantity === 0){
-                return session()->flash('error','Jumlah item kurang');
+            if($products->status === 0){
+                return session()->flash('error','Menu sudah habis');
             }
-            
-            $products->update([
-                'quantity' => $products->quantity - $row['quantity'],
-            ]);
 
             ProductTransactionModel::create([
                 'product_id'    => $row['id'],
                 'invoice'       => $invoice,
                 'quantity'      => $row['quantity'],
             ]);
-            
         }
 
         $user_id = Auth()->id();
@@ -224,13 +216,9 @@ class Pos extends Component
         foreach ($filterCart as $row) {
             $products = ProductModel::find($row['id']);
 
-            if($products->quantity === 0){
-                return session()->flash('error','Jumlah item kurang');
+            if($products->status === 0){
+                return session()->flash('error','Menu sudah habis');
             }
-            
-            $products->update([
-                'quantity' => $products->quantity - $row['quantity'],
-            ]);
 
             ProductTransactionModel::create([
                 'product_id'    => $row['id'],

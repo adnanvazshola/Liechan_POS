@@ -1,14 +1,16 @@
 @push('css')
-    .tambah{
-        color: white;
-    }
-    .tambah:hover{
-        background-color: white;
-        color: #28a745;
-    }
-    .btn-outline-warning:hover{
-        color: white;
-    }
+    <style>
+        .tambah{
+            color: white;
+        }
+        .tambah:hover{
+            background-color: white;
+            color: #28a745;
+        }
+        .btn-outline-warning:hover{
+            color: white;
+        }
+    </style>
 @endpush
 <div class="pr-3 pl-3">
     <div class="content-header">
@@ -16,7 +18,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item active">Menu</li>
                     </ol>
                 </div>
@@ -44,9 +46,8 @@
                         <thead>
                             <tr>
                                 <th style="width: 25%">#</th>
-                                <th style="width: 20%">Nama</th>
-                                <th style="width: 15%">Harga</th>
-                                <th style="width: 10%">Stok</th>
+                                <th style="width: 25%">Nama</th>
+                                <th style="width: 20%">Harga</th>
                                 <th style="width: 10%">Status</th>
                                 <th style="width: 20%">Action</th>
                             </tr>
@@ -62,11 +63,10 @@
                                     </figcaption>
                                 </td>
                                 <td>Rp. {{ $row->price }}</td>
-                                <td>{{ $row->quantity }} pcs</td>
                                 <td>
-                                    @if($row->quantity == 0)
+                                    @if($row->status == 0)
                                         <span class="badge bg-danger">Habis</span>
-                                    @elseif($row->quantity >= 1)
+                                    @elseif($row->status == 1)
                                         <span class="badge bg-success">Tersedia</span>
                                     @else
                                         <span class="badge bg-warning">Error</span>
@@ -79,6 +79,15 @@
                                     <button wire:click="destroy({{$row->id}})" class="btn btn-sm btn-outline-danger">
                                         <i class="fas fa-trash"></i>
                                     </button>
+                                    @if ($row->status == 1)
+                                        <button wire:click="changeStatus({{ $row->id }})" class="btn btn-sm btn-outline-primary">
+                                            Habis ?
+                                        </button>
+                                    @elseif($row->status == 0)
+                                        <button wire:click="changeStatus({{ $row->id }})" class="btn btn-sm btn-outline-primary">
+                                            Tersedia ?
+                                        </button>
+                                    @endif
                                 </td>
                             </tr>
                             @empty
@@ -124,9 +133,9 @@
                                 <td>Rp. {{ $row->price }}</td>
                                 <td>{{ $row->quantity }} pcs</td>
                                 <td>
-                                    @if($row->quantity == 0)
+                                    @if($row->status == 0)
                                         <span class="badge bg-danger">Habis</span>
-                                    @elseif($row->quantity >= 1)
+                                    @elseif($row->status == 1)
                                         <span class="badge bg-success">Tersedia</span>
                                     @else
                                         <span class="badge bg-warning">Error</span>
@@ -139,6 +148,15 @@
                                     <button wire:click="destroy({{$row->id}})" class="btn btn-sm btn-outline-danger">
                                         <i class="fas fa-trash"></i>
                                     </button>
+                                    @if ($row->status == 1)
+                                        <button wire:click="changeStatus({{ $row->id }})" class="btn btn-sm btn-outline-primary">
+                                            Habis ?
+                                        </button>
+                                    @elseif($row->status == 0)
+                                        <button wire:click="changeStatus({{ $row->id }})" class="btn btn-sm btn-outline-primary">
+                                            Tersedia ?
+                                        </button>
+                                    @endif
                                 </td>
                             </tr>
                             @empty
@@ -184,9 +202,9 @@
                                 <td>Rp. {{ $row->price }}</td>
                                 <td>{{ $row->quantity }} pcs</td>
                                 <td>
-                                    @if($row->quantity == 0)
+                                    @if($row->status == 0)
                                         <span class="badge bg-danger">Habis</span>
-                                    @elseif($row->quantity >= 1)
+                                    @elseif($row->status == 1)
                                         <span class="badge bg-success">Tersedia</span>
                                     @else
                                         <span class="badge bg-warning">Error</span>
@@ -199,6 +217,15 @@
                                     <button wire:click="destroy({{$row->id}})" class="btn btn-sm btn-outline-danger">
                                         <i class="fas fa-trash"></i>
                                     </button>
+                                    @if ($row->status == 1)
+                                        <button wire:click="changeStatus({{ $row->id }})" class="btn btn-sm btn-outline-primary">
+                                            Habis ?
+                                        </button>
+                                    @elseif($row->status == 0)
+                                        <button wire:click="changeStatus({{ $row->id }})" class="btn btn-sm btn-outline-primary">
+                                            Tersedia ?
+                                        </button>
+                                    @endif
                                 </td>
                             </tr>
                             @empty

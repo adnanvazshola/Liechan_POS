@@ -11,7 +11,7 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $name, $image, $price, $description, $quantity, $jenis_makanan, $id_product;
+    public $name, $image, $price, $description, $jenis_makanan, $id_product;
 
     public function store()
     {
@@ -20,7 +20,6 @@ class Create extends Component
             'image'         => 'required|image',
             'price'         => 'required',
             'description'   => 'nullable',
-            'quantity'      => 'required',
             'jenis_makanan' => 'required',
         ]);
 
@@ -36,7 +35,6 @@ class Create extends Component
             'name'          => $this->name,
             'image'         => $imageName,
             'description'   => $this->description,
-            'quantity'      => $this->quantity,
             'price'         => $this->price,
             'jenis_makanan' => $this->jenis_makanan,
         ]);

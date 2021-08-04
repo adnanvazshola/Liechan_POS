@@ -43,11 +43,6 @@
                                     @error('jenis_makanan') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Stok Produk</label>
-                                    <input type="number" class="form-control" wire:model="quantity" placeholder="Masukan stok produk...">
-                                    @error('quantity') <small class="text-danger">{{ $message }}</small>@enderror
-                                </div>
-                                <div class="form-group">
                                     <label for="price">Harga Produk</label>
                                     <input type="number" class="form-control" wire:model="price" placeholder="Masukan harga produk...">
                                     @error('price') <small class="text-danger">{{ $message }}</small>@enderror

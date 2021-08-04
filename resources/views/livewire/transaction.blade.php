@@ -1,13 +1,15 @@
 @push('css')
-    .btn-outline-warning:hover{
-        color: white;
-    }
-    .clickable {
-        cursor: pointer;
-    }
-    .right-col {
-        text-align: center;
-    }
+    <style>
+        .btn-outline-warning:hover{
+            color: white;
+        }
+        .clickable {
+            cursor: pointer;
+        }
+        .right-col {
+            text-align: center;
+        }
+    </style>
 @endpush
 <div class="pl-3 pr-3">
     <div class="content-header">
@@ -15,8 +17,8 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Transaction</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Finance</li>
                     </ol>
                 </div>
                 <div class="col-sm-6">
@@ -63,7 +65,7 @@
                                 <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coins"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Pendapatan Bersih</span>
-                                    @if ($pendapatanKotor > $pengeluaran)
+                                    @if ($pendapatanKotor >= $pengeluaran)
                                         <span class="info-box-number text-sm">
                                             Rp. {{ number_format($pendapatanBersih,0,',','.') }}
                                         </span>
@@ -97,7 +99,7 @@
                     <table class="table w-100">
                         <thead>
                             <tr>
-                                <th style="width: 10%">No.</th>
+                                <th style="width: 10%">Invoice</th>
                                 <th style="width: 20%">Nama Transaksi</th>
                                 <th style="width: 15%">Dari / Kepada</th>
                                 <th style="width: 10%">Jenis</th>

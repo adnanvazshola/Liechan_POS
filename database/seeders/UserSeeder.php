@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@liechan.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('1liechan1'),
             'role' => 'admin',
             'created_at' => \Carbon\Carbon::now(),
             'email_verified_at' => \Carbon\Carbon::now()
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Kasir',
             'email' => 'kasir@liechan.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('ayam12ribu'),
             'role' => 'kasir',
             'created_at' => \Carbon\Carbon::now(),
             'email_verified_at' => \Carbon\Carbon::now()

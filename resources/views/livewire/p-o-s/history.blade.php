@@ -1,14 +1,3 @@
-@push('css')
-    .btn-outline-warning:hover{
-        color: white;
-    }
-    .clickable {
-        cursor: pointer;
-    }
-    .right-col {
-        text-align: center;
-    }
-@endpush
 <div class="pl-3 pr-3">
     <div class="content-header">
         <div class="container-fluid">
@@ -39,8 +28,7 @@
                         <div class="card-body">
                             <table class="table table-hover">
                                 <thead>
-                                    <tr>    
-                                        <th>No.</th>
+                                    <tr>
                                         <th>Invoice</th>
                                         <th>Nama</th>
                                         <th>Tanggal</th>
@@ -48,15 +36,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $no = 1;    
-                                    @endphp
                                     @forelse ($historyOrders as $row)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
                                             <td class="text-uppercase">{{ $row->invoice }}</td>
                                             <td class="text-capitalize">{{ $row->to }}</td>
-                                            <td>{{ $row->created_at->format('d F Y') }} || {{ $row->created_at->format('H:m') }}</td>
+                                            <td>{{ $row->created_at->translatedFormat('d F Y') }} || {{ $row->created_at->format('H:i') }}</td>
                                             <td>
                                                 <button wire:click="show({{ $row->id }})" class="btn btn-sm btn-outline-success">Detail</button>
                                             </td>
@@ -68,6 +52,11 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            <nav>
+                                <ul class="pagination pagination-sm">
+                                    {{ $historyOrders->links() }}
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>

@@ -41,4 +41,18 @@ class Product extends Component
         $product->delete();
         session()->flash('info' , $product->name . ' telah dihapus');
     }
+
+    public function changeStatus($id)
+    {
+        $product = ProductModel::find($id);
+        if ($product->status == 0) {
+            $product->update([
+                'status' => 1
+            ]);
+        }else {
+            $product->update([
+                'status' => 0
+            ]);
+        }
+    }
 }

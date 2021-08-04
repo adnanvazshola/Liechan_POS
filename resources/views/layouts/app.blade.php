@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="{{ asset('adminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
         @livewireStyles
+        @stack('css')
         <style>
-            @stack('css'){}
             .scrollbar
             {
                 background: #F5F5F5;
@@ -41,7 +41,7 @@
             }
         </style>
     </head>
-    <body class="hold-transition sidebar-mini layout-fixed scrollbar" id="style-3">
+    <body class="hold-transition sidebar-mini layout-fixed scrollbar skin-blue sidebar-collapse" id="style-3">
         <div class="wrapper">
             <nav class="main-header navbar navbar-expand navbar-white navbar-light">
                 <ul class="navbar-nav">
@@ -95,6 +95,7 @@
             </nav>
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <a href="#" class="brand-link">
+                    <img src="{{ asset('img/logo.png') }}" alt="Liechan Icon" class="brand-image img-circle elevation-3" style="opacity: .8">
                     <span class="brand-text text-center ml-3">Liechan <span class="font-weight-bold">POS</span></span>
                 </a>
                 <div class="sidebar">
@@ -117,7 +118,7 @@
                             @endif
                             <li class="nav-item">
                                 <a href="{{ route('pos.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-clipboard"></i>
+                                    <i class="nav-icon fas fa-cash-register"></i>
                                     <p>Point of Sales</p>
                                 </a>
                             </li>
@@ -129,7 +130,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('reservation.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
+                                    <i class="nav-icon fas fa-calendar-alt"></i>
                                     <p>Reservation</p>
                                 </a>
                             </li>
@@ -175,13 +176,13 @@
             </footer>
         </div>
         @livewireScripts
-        {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
-        {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script> --}}
         <script src="{{ asset('adminLTE/plugins/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('adminLTE/dist/js/adminlte.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
         @stack('js')
         <script src="{{ asset('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('adminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-        <script src="{{ asset('adminLTE/dist/js/adminlte.js') }}"></script>
         <script src="{{ asset('adminLTE/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
         <script src="{{ asset('adminLTE/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
         <script>
