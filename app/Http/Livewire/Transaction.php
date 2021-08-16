@@ -25,7 +25,7 @@ class Transaction extends Component
         $pendapatanKotor = TransactionModel::whereIn('type', [1,3])->whereMonth('created_at', $bulan)->sum('amount');
         $pengeluaran = TransactionModel::where('type', 0)->whereMonth('created_at', $bulan)->sum('amount');
         $pesanan = TransactionModel::where('type', 3)->whereDay('created_at',$hari)->count();
-        $pendapatanPos = TransactionModel::where('type', 3)->whereDay('created_at', $hari)->sum('amount');
+        $pendapatanPos = TransactionModel::where('type', 3)->where('status',1)->whereDay('created_at', $hari)->sum('amount');
         return view('livewire.transaction', [
             'transactions'      => $transactions,
             'pendapatanKotor'   => $pendapatanKotor,

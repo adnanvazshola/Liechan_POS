@@ -22,7 +22,6 @@
                                     autocomplete="email" 
                                     autofocus
                             >
-
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -37,16 +36,10 @@
                         <div class="input-group mb-3">
                             <input  id="password" 
                                     type="password" 
-                                    class="form-control @error('password') is-invalid @enderror" name="password" 
+                                    class="form-control" name="password" 
                                     placeholder="Password"
-                                    required 
-                                    autocomplete="current-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    required
+                                    >
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>

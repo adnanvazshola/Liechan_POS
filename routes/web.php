@@ -15,6 +15,7 @@ use App\Http\Livewire\Transaction\Create as TransactionCreate;
 use App\Http\Livewire\Transaction\Edit as TransactionEdit;
 use App\Http\Livewire\Transaction\Detail as TransactionDetail;
 use App\Http\Livewire\Reservation;
+use App\Http\Livewire\Reservation2;
 use App\Http\Livewire\Reservation\Create as ReservationCreate;
 use App\Http\Livewire\Reservation\Edit as ReservationEdit;
 use App\Http\Livewire\Reservation\Detail as ReservationDetail;
@@ -56,7 +57,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/reservation/edit/{id}', [ReservationEdit::class,'__invoke'])->name('reservation.edit');
     Route::get('/reservation/detail/{id}', [ReservationDetail::class,'__invoke'])->name('reservation.detail');
     Route::get('/reservation/history', [ReservationHistory::class,'__invoke'])->name('reservation.history');
-    
+
     Route::get('/logout', function() {
         Auth::logout();
         return redirect('/');
