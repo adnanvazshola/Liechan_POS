@@ -4,9 +4,9 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('reservation.index') }}">Reservation</a></li>
-                        <li class="breadcrumb-item active">Create</li>
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reservation.index') }}">Reservasi</a></li>
+                        <li class="breadcrumb-item active">Tambah Reservasi</li>
                     </ol>
                 </div>
                 <div class="col-sm-6">
@@ -25,7 +25,7 @@
                         <div class="card card-primary pb-3">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    Add Reservation
+                                    Tambah Reservation
                                 </h3>
                             </div>
                             <div class="card-body">

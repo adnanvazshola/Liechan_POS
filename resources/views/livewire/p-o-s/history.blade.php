@@ -4,14 +4,14 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Point of Sales</a></li>
-                        <li class="breadcrumb-item active">History</li>
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="route('pos.index')">Point of Sales</a></li>
+                        <li class="breadcrumb-item active">Riwayat</li>
                     </ol>
                 </div>
                 <div class="col-sm-6">
                     <div class="float-sm-right">
-                        <button wire:click="back" class="btn btn-sm btn-outline-danger rounded-pill">Back</button>
+                        <button wire:click="back" class="btn btn-sm btn-outline-danger rounded-pill">Kembali</button>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                 <div class="col-lg-8 col-md-8 col-xs-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h6 class="card-title">History Orders</h6>
+                            <h6 class="card-title">Riwayat Pesanan</h6>
                         </div>
                         <div class="card-body">
                             <table class="table table-hover">
@@ -52,11 +52,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            <nav>
-                                <ul class="pagination pagination-sm">
-                                    {{ $historyOrders->links() }}
-                                </ul>
-                            </nav>
+                            {{ $historyOrders->links() }}
                         </div>
                     </div>
                 </div>

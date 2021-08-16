@@ -4,8 +4,8 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('reservation.index') }}">Reservation</a></li>
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reservation.index') }}">Reservasi</a></li>
                         <li class="breadcrumb-item active">Edit</li>
                     </ol>
                 </div>
@@ -19,13 +19,13 @@
     </div>
     <section class="content">
         <div class="container-fluid">
-            <form wire:submit.prevent="store">
+            <form wire:submit.prevent="update">
                 <div class="row">
                     <div class="col-md-7">
                         <div class="card card-primary pb-3">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    Edit Reservation
+                                    Edit Reservasi
                                 </h3>
                             </div>
                             <div class="card-body">

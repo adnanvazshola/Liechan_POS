@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </form>
-                <ul class="navbar-nav ml-auto">
+                {{-- <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link" data-toggle="dropdown" href="#">
                             <i class="far fa-bell"></i>
@@ -83,15 +83,10 @@
                                 <span class="float-right text-muted text-sm">12 hours</span>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-file mr-2"></i> 3 new reports
-                                <span class="float-right text-muted text-sm">2 days</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                         </div>
                     </li>
-                </ul>
+                </ul> --}}
             </nav>
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <a href="#" class="brand-link">
@@ -184,7 +179,7 @@
         <script src="{{ asset('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('adminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
         <script src="{{ asset('adminLTE/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
-        <script src="{{ asset('adminLTE/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             $(document).ready(function () {
                 if (!$.browser.webkit) {

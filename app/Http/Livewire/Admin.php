@@ -36,7 +36,11 @@ class Admin extends Component
 
         $persentasePendapatan = ($pendapatanBersih-$pendapatanBersihLalu)/$pendapatanBersihLalu*100;
         $reservations = ReservationModel::where('date',$date)->orderBy('date', 'desc')->orderBy('time', 'asc')->get();
-        $emptyMenu = ProductModel::where('status',0)->orderBy('name','asc')->get();
+
+        $emptyMenu = ProductModel::with('productTransaction')->where('status',0)->orderBy('name','asc')->get();
+        // $menu = explode($emptyMenu->productTransaction->quantity,',');
+        // dd($menu);
+
         return view('livewire.admin', [
             'reservations'  => $reservations,
             'menu'          => $emptyMenu,
@@ -56,7 +60,6 @@ class Admin extends Component
 
     public function detail($id)
     {
-        $reservation = ReservationModel::find($id);
-        return redirect()->route('reservation.detail', $reservation->id);
+        return redirect()->route('reservation.detail', $id);
     }
 }

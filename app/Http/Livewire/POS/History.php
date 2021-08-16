@@ -10,11 +10,11 @@ use Livewire\WithPagination;
 class History extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $id_transaction, $invoice, $amount, $date, $id_product, $name, $quantity, $productPrice, $totalProductPrice, $status, $to;
     public $cartItem;
     public $detailOrder = 0;
-    protected $paginationTheme = 'bootstrap';
 
     public function render()
     {

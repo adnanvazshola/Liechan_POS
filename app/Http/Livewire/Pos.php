@@ -20,7 +20,7 @@ class Pos extends Component
         $makanan    = ProductModel::orderBy('name', 'asc')->where('jenis_makanan', '0')->where('status', 1)->get();
         $minuman    = ProductModel::orderBy('name', 'asc')->where('jenis_makanan', '1')->where('status', 1)->get();
         $tambahan   = ProductModel::orderBy('name', 'asc')->where('jenis_makanan', '2')->where('status', 1)->get();
-
+        $orders     = TransactionModel::where('type',3)->where('status', 0)->count();
         $condition = new \Darryldecode\Cart\CartCondition([
             'name'  => 'tax',
             'type'  => 'tax',
@@ -70,6 +70,7 @@ class Pos extends Component
             'tambahan'  => $tambahan,
             'carts'     => $cartData,
             'summary'   => $summary,
+            'orders'    => $orders,
         ]);
     }
 

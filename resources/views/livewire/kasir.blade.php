@@ -29,7 +29,7 @@
                                         <th>Produk</th>
                                         <th>Harga</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,9 +44,9 @@
                                                     Tersedia
                                                 @endif
                                             </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-success" wire::click="changeStatus({{ $row->id }})">
-                                                    Tersedia ?
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-outline-primary" wire:click="changeStatus({{ $row->id }})">
+                                                    <i class="fas fa-retweet"></i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -122,7 +122,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="timeline-footer">
-                                                    <a class="btn btn-success btn-sm" wire::click="detail({{ $row->id }})">Detail</a>
+                                                    <a class="btn btn-success btn-sm" wire:click="detail({{ $row->id }})">Detail</a>
                                                 </div>
                                             </div>
                                         </div>

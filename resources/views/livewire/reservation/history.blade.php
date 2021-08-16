@@ -17,14 +17,14 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Reservasi</li>
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reservation.index') }}">Reservasi</a></li>
+                        <li class="breadcrumb-item active">Riwayat</li>
                     </ol>
                 </div>
                 <div class="col-sm-6">
                     <div class="float-sm-right">
-                        <button wire:click="history" class="btn btn-sm btn-outline-info rounded-pill mr-2"><i class="fas fa-history mr-2"></i>History</button>
-                        <button wire:click="create" class="btn btn-sm btn-outline-primary rounded-pill">+  Tambah Reservasi</button>
+                        <button wire:click="back" class="btn btn-sm btn-outline-danger rounded-pill mr-2">Kembali</button>
                     </div>
                 </div>
             </div>
@@ -72,9 +72,6 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button wire:click="edit({{$row->id}})" class="btn btn-sm btn-outline-warning">
-                                        <i class="far fa-edit"></i>
-                                    </button>
                                     <button wire:click="destroy({{$row->id}})" class="btn btn-sm btn-outline-danger">
                                         <i class="fas fa-trash"></i>
                                     </button>

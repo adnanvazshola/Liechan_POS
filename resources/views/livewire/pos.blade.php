@@ -11,14 +11,22 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Point of Sales</li>
                     </ol>
                 </div>
                 <div class="col-sm-6">
                     <div class="float-sm-right">
-                        <button wire:click="holdInvoice" class="btn btn-sm btn-outline-success rounded-pill mr-2"><i class="fas fa-file-invoice mr-2"></i>Pesanan Belum Dibayar</button>
-                        <button wire:click="historyOrders" class="btn btn-sm btn-outline-info rounded-pill"><i class="fas fa-history mr-2"></i>History</button>
+                        <button wire:click="holdInvoice" class="btn btn-sm btn-outline-success rounded-pill mr-2">
+                            <i class="fas fa-file-invoice mr-2"></i>
+                            Belum Dibayar 
+                            @if ($orders != 0)
+                                <span class="badge ml-1 bg-success rounded-pill">{{ $orders }}</span></button>
+                            @endif
+                        <button wire:click="historyOrders" class="btn btn-sm btn-outline-info rounded-pill">
+                            <i class="fas fa-history mr-2"></i>
+                            Riwayat
+                        </button>
                     </div>
                 </div>
             </div>
@@ -28,96 +36,90 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-xs-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h6 class="card-title">Makanan</h6>
-                            {{-- <div class="card-tools">
-                                <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div> --}}
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                @foreach($makanan as $row)
-                                <div class="col-lg-3 col-md-4 col-xs-12 mb-4">
-                                    <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
-                                        <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
-                                        <div class="card-body">
-                                            <p class="h6 text-capitalize">{{ $row->name }}</p>
-                                            <figcaption class="blockquote-footer">
-                                                Rp. {{ $row->price }}
-                                            </figcaption>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button class="btn btn-sm btn-primary btn-block" wire:click="addItem({{ $row->id }})">Add to Cart</button>
+                    @if (count($makanan) <= 0)
+                    @else  
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h6 class="card-title">Makanan</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    @foreach($makanan as $row)
+                                    <div class="col-lg-3 col-md-4 col-xs-12 mb-4">
+                                        <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
+                                            <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
+                                            <div class="card-body">
+                                                <p class="h6 text-capitalize">{{ $row->name }}</p>
+                                                <figcaption class="blockquote-footer">
+                                                    Rp. {{ $row->price }}
+                                                </figcaption>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button class="btn btn-sm btn-primary btn-block" wire:click="addItem({{ $row->id }})">Add to Cart</button>
+                                            </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
-                                @endforeach
                             </div>
                         </div>
-                    </div>
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h6 class="card-title">Minuman</h6>
-                            {{-- <div class="card-tools">
-                                <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div> --}}
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                @foreach($minuman as $row)
-                                <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
-                                    <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
-                                        <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
-                                        <div class="card-body">
-                                            <p class="h6 text-capitalize">{{ $row->name }}</p>
-                                            <figcaption class="blockquote-footer">
-                                                Rp. {{ $row->price }}
-                                            </figcaption>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button class="btn btn-sm btn-primary btn-block" wire:click="addItem({{ $row->id }})">Add to Cart</button>
+                    @endif
+                    @if (count($minuman) <= 0)
+                    @else  
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h6 class="card-title">Minuman</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    @foreach($minuman as $row)
+                                    <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+                                        <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
+                                            <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
+                                            <div class="card-body">
+                                                <p class="h6 text-capitalize">{{ $row->name }}</p>
+                                                <figcaption class="blockquote-footer">
+                                                    Rp. {{ $row->price }}
+                                                </figcaption>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button class="btn btn-sm btn-primary btn-block" wire:click="addItem({{ $row->id }})">Add to Cart</button>
+                                            </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
-                                @endforeach
                             </div>
                         </div>
-                    </div>
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h6 class="card-title">Tambahan</h6>
-                            {{-- <div class="card-tools">
-                                <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div> --}}
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                @foreach($tambahan as $row)
-                                <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
-                                    <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
-                                        <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
-                                        <div class="card-body">
-                                            <p class="h6 text-capitalize">{{ $row->name }}</p>
-                                            <figcaption class="blockquote-footer">
-                                                Rp. {{ $row->price }}
-                                            </figcaption>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button class="btn btn-sm btn-primary btn-block" wire:click="addItem({{ $row->id }})">Add to Cart</button>
+                    @endif
+                    @if (count($tambahan) <= 0)
+                    @else  
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h6 class="card-title">Tambahan</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    @foreach($tambahan as $row)
+                                    <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+                                        <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
+                                            <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
+                                            <div class="card-body">
+                                                <p class="h6 text-capitalize">{{ $row->name }}</p>
+                                                <figcaption class="blockquote-footer">
+                                                    Rp. {{ $row->price }}
+                                                </figcaption>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button class="btn btn-sm btn-primary btn-block" wire:click="addItem({{ $row->id }})">Add to Cart</button>
+                                            </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
-                                @endforeach
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <div class="card card-primary sticky-top">
@@ -215,13 +217,13 @@
                                 <div class="col-6">
                                     <form wire:submit.prevent="saveInvoice">
                                         <input type="hidden" wire:model="name">
-                                        <button class="btn btn-sm btn-success btn-block"><i class="fas fa-save mr-2"></i>Save</button>
+                                        <button class="btn btn-sm btn-success btn-block"><i class="fas fa-save mr-2"></i>Simpan</button>
                                     </form>
                                 </div>
                                 <div class="col-6">
                                     <form wire:submit.prevent="payment">
                                         <input type="hidden" wire:model="name">
-                                        <button class="btn btn-sm btn-primary btn-block"><i class="fas fa-cash-register mr-2"></i>Payment</button>
+                                        <button class="btn btn-sm btn-primary btn-block"><i class="fas fa-cash-register mr-2"></i>Bayar</button>
                                     </form>
                                 </div>
                             </div>

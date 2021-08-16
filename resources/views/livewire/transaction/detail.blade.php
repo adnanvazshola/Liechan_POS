@@ -5,7 +5,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('transaction.index') }}">Finance</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('transaction.index') }}">Keuangan</a></li>
                         <li class="breadcrumb-item active">Detail</li>
                     </ol>
                 </div>
@@ -22,7 +22,7 @@
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Detail Transaction <span class="font-weight-bold">{{ $name }}</span>
+                        Detail Transaksi <span class="font-weight-bold">{{ $name }}</span>
                     </h3>
                 </div>
                 <div class="card-body">
@@ -32,7 +32,7 @@
                                 <tr>
                                     <th>Invoice</th><td>:</td><td>{{ $invoice }}</td>
                                 </tr><tr>
-                                    <th>Name</th><td>:</td><td>{{ $name }}</td>
+                                    <th>Nama</th><td>:</td><td>{{ $name }}</td>
                                 </tr><tr>
                                     <th>Dari / Ke</th><td>:</td><td>{{ $to }}</td>
                                 </tr>

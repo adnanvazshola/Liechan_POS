@@ -17,13 +17,13 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Finance</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Keuangan</li>
                     </ol>
                 </div>
                 <div class="col-sm-6">
                     <div class="float-sm-right">
-                        <button wire:click="create" class="btn btn-sm btn-outline-primary rounded-pill">+ Add transaction</button>
+                        <button wire:click="create" class="btn btn-sm btn-outline-primary rounded-pill">+ Tambah Transaksi</button>
                     </div>
                 </div>
             </div>
@@ -64,16 +64,10 @@
                             <div class="info-box mb-3">
                                 <span class="info-box-icon bg-success elevation-1"><i class="fas fa-coins"></i></span>
                                 <div class="info-box-content">
-                                    <span class="info-box-text">Pendapatan Bersih</span>
-                                    @if ($pendapatanKotor >= $pengeluaran)
-                                        <span class="info-box-number text-sm">
-                                            Rp. {{ number_format($pendapatanBersih,0,',','.') }}
-                                        </span>
-                                    @else
-                                        <span class="info-box-number text-sm text-danger active">
-                                            Rp. {{ number_format($pendapatanBersih,0,',','.') }}
-                                        </span>
-                                    @endif
+                                    <span class="info-box-text">Pesanan Hari Ini</span>
+                                    <span class="info-box-number text-sm">
+                                        {{ $pesanan }} pesanan
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -139,11 +133,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                    <nav>
-                        <ul class="pagination pagination-sm">
-                            {{ $transactions->links() }}
-                        </ul>
-                    </nav>
+                    {{ $transactions->links() }}
                 </div>
             </div>
         </div>

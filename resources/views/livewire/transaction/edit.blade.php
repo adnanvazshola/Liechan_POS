@@ -5,7 +5,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('transaction.index') }}">Finance</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('transaction.index') }}">Keuangan</a></li>
                         <li class="breadcrumb-item active">Edit</li>
                     </ol>
                 </div>
@@ -25,7 +25,7 @@
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    Update Transaction
+                                    Update Transaksi
                                 </h3>
                             </div>
                             <div class="card-body">

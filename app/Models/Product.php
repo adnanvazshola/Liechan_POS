@@ -9,4 +9,9 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function productTransaction()
+    {
+        return $this->hasMany(ProductTransaction::class,'id', 'product_id');
+    }
 }

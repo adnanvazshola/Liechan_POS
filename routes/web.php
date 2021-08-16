@@ -18,6 +18,7 @@ use App\Http\Livewire\Reservation;
 use App\Http\Livewire\Reservation\Create as ReservationCreate;
 use App\Http\Livewire\Reservation\Edit as ReservationEdit;
 use App\Http\Livewire\Reservation\Detail as ReservationDetail;
+use App\Http\Livewire\Reservation\History as ReservationHistory;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -54,6 +55,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/reservation/create', [ReservationCreate::class,'__invoke'])->name('reservation.create');
     Route::get('/reservation/edit/{id}', [ReservationEdit::class,'__invoke'])->name('reservation.edit');
     Route::get('/reservation/detail/{id}', [ReservationDetail::class,'__invoke'])->name('reservation.detail');
+    Route::get('/reservation/history', [ReservationHistory::class,'__invoke'])->name('reservation.history');
     
     Route::get('/logout', function() {
         Auth::logout();

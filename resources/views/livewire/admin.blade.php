@@ -1,4 +1,30 @@
+{{-- @push('css')
+    <style>
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: #fff;
+        }
+        .preloader .loading {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            font: 14px arial;
+        }
+    </style>
+@endpush --}}
 <div class="pr-3 pl-3">
+    {{-- <div class="preloader">
+        <div class="loading">
+            <img src="{{ asset('img/loading.svg') }}" width="80">
+            <p>Please Wait</p>
+        </div>
+    </div> --}}
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -18,11 +44,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6">      
-                    <div class="card">
+                    <div class="card" wire:ignore>
                         <div class="card-header border-0">
                             <div class="d-flex justify-content-between">
                                 <h3 class="card-title font-weight-bold">Pendapatan {{ $today->translatedFormat('F Y') }}</h3>
-                                <a href="javascript:void(0);">View Report</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -58,45 +83,45 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header border-0">
-                            <h3 class="card-title font-weight-bold">Produk Habis</h3>
-                        </div>
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-striped table-valign-middle">
-                                <thead>
-                                    <tr>
-                                        <th>Produk</th>
-                                        <th>Harga</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($menu as $row)
+                    @if (count($menu) != 0)
+                        <div class="card">
+                            <div class="card-header border-0">
+                                <h3 class="card-title font-weight-bold">Produk Habis</h3>
+                            </div>
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-striped table-valign-middle">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $row->name }}</td>
-                                            <td>Rp. {{ number_format($row->price,0,',','.') }}</td>
-                                            <td>
-                                                @if ($row->status == 0)
-                                                    Habis
-                                                @else
-                                                    Tersedia
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-success" wire::click="changeStatus({{ $row->id }})">
-                                                    Tersedia ?
-                                                </button>
-                                            </td>
+                                            <th>Produk</th>
+                                            <th>Harga</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Pilihan</th>
                                         </tr>
-                                    @empty
-                                        <tr><td colspan="4" class="text-center">Semua menu tersedia</td></tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($menu as $row)
+                                            <tr>
+                                                <td>{{ $row->name }}</td>
+                                                <td>Rp. {{ number_format($row->price,0,',','.') }}</td>
+                                                <td>
+                                                    @if ($row->status == 0)
+                                                        Habis
+                                                    @else
+                                                        Tersedia
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-outline-primary" wire:click="changeStatus({{ $row->id }})">
+                                                        <i class="fas fa-retweet"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <div class="col-lg-6">
                     <div class="card">
@@ -162,7 +187,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="timeline-footer">
-                                                    <a class="btn btn-success btn-sm" wire::click="detail({{ $row->id }})">Detail</a>
+                                                    <a class="btn btn-success btn-sm" wire:click="detail({{ $row->id }})">Detail</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -200,4 +225,9 @@
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
     </script>
+    {{-- <script>
+        $(document).ready(function(){
+        $(".preloader").fadeOut();
+        })
+    </script> --}}
 @endpush

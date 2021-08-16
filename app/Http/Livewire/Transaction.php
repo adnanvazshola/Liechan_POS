@@ -24,15 +24,15 @@ class Transaction extends Component
         $transactions = TransactionModel::orderBy('created_at', 'DESC')->where('type', '!=', 3)->paginate(10);
         $pendapatanKotor = TransactionModel::whereIn('type', [1,3])->whereMonth('created_at', $bulan)->sum('amount');
         $pengeluaran = TransactionModel::where('type', 0)->whereMonth('created_at', $bulan)->sum('amount');
-        $pendapatanBersih = $pendapatanKotor-$pengeluaran;
+        $pesanan = TransactionModel::where('type', 3)->whereDay('created_at',$hari)->count();
         $pendapatanPos = TransactionModel::where('type', 3)->whereDay('created_at', $hari)->sum('amount');
         return view('livewire.transaction', [
-            'transactions' => $transactions,
-            'pendapatanKotor'=> $pendapatanKotor,
-            'pengeluaran'   => $pengeluaran,
-            'pendapatanBersih'=>$pendapatanBersih,
-            'pendapatanToday'=> $pendapatanPos, 
-            'today' => $today,
+            'transactions'      => $transactions,
+            'pendapatanKotor'   => $pendapatanKotor,
+            'pengeluaran'       => $pengeluaran,
+            'pesanan'           => $pesanan,
+            'pendapatanToday'   => $pendapatanPos, 
+            'today'             => $today,
         ]);
     }
 
