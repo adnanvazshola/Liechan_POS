@@ -37,7 +37,7 @@ class Product extends Component
     public function destroy($id)
     {
         $product = ProductModel::find($id);
-        File::delete(storage_path('../public/storage/image/' . $product->image));
+        File::delete(storage_path('../public/storage/images/' . $product->image));
         $product->delete();
         session()->flash('info' , $product->name . ' telah dihapus');
     }

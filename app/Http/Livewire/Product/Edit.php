@@ -28,7 +28,10 @@ class Edit extends Component
             $this->jenis_makanan= $product->jenis_makanan;
         }
     }
-
+    protected $messages = [
+        'required'      => 'Field tidak boleh kosong.',
+        'numeric'       => 'Field ini diisi dengan angka',
+    ];
     public function update()
     {
         $this->validate([
@@ -45,6 +48,8 @@ class Edit extends Component
 
             if ($product) {
                 if ($this->image) {
+                    File::delete(storage_path('../public/storage/images/' . $product->image));
+
                     $imageName = md5($this->image.microtime().'.'.$this->image->extension());
     
                     Storage::putFileAs(
