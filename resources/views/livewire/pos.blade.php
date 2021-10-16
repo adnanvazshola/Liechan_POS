@@ -41,15 +41,25 @@
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h6 class="card-title">Makanan</h6>
+                                {{-- <div class="card-tools">
+                                    <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div> --}}
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     @foreach($makanan as $row)
                                     <div class="col-lg-3 col-md-4 col-xs-12 mb-4">
                                         <div class="card h-100" style="border-top-right-radius: 10px; border-top-left-radius: 10px;">
-                                            <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; " src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
+                                            <img class="card-img-top" style="border-top-right-radius: 10px; border-top-left-radius: 10px; max-height: 111px" src="{{ asset('storage/images/'.$row->image) }}" alt="{{ $row->name }}">
                                             <div class="card-body">
                                                 <p class="h6 text-capitalize">{{ $row->name }}</p>
+                                                @if ($row->description)
+                                                    <figcaption class="blockquote-footer">
+                                                        {{ $row->description }}
+                                                    </figcaption>
+                                                @endif
                                                 <figcaption class="blockquote-footer">
                                                     Rp. {{ $row->price }}
                                                 </figcaption>
@@ -159,7 +169,14 @@
                                         </button>
                                     </div>
                                     <div class="col-4">
-                                        {{ $row['name'] }}<br>
+                                        {{-- {{ Str::Limit($row['name'],12) }} --}}
+                                        {{ $row['name'] }}
+                                        <br>
+                                        @if ($row['description'])
+                                            <figcaption class="blockquote-footer">
+                                                {{ $row['description'] }}
+                                            </figcaption>
+                                        @endif
                                         <figcaption class="blockquote-footer">
                                             Rp. {{ number_format($row['price'],0,',','.') }}
                                         </figcaption>

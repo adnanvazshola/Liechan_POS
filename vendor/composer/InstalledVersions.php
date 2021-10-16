@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '856cfa06ac54106d2ed41df3f55da4c523588420',
+    'reference' => '9c64a7775dca5b25a5c4edbf8029846d94aae7c1',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -504,12 +504,12 @@ private static $installed = array (
     ),
     'intervention/image' => 
     array (
-      'pretty_version' => '2.6.0',
-      'version' => '2.6.0.0',
+      'pretty_version' => '2.6.1',
+      'version' => '2.6.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a2d7238069bb01322f9c2a661449955434fec9c6',
+      'reference' => '0925f10b259679b5d8ca58f3a2add9255ffcda45',
     ),
     'itsgoingd/clockwork' => 
     array (
@@ -543,7 +543,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '856cfa06ac54106d2ed41df3f55da4c523588420',
+      'reference' => '9c64a7775dca5b25a5c4edbf8029846d94aae7c1',
     ),
     'laravel/sail' => 
     array (

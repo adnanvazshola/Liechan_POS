@@ -7,6 +7,7 @@ use App\Models\Product as ProductModel;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 class Edit extends Component
 {
@@ -51,12 +52,17 @@ class Edit extends Component
                     File::delete(storage_path('../public/storage/images/' . $product->image));
 
                     $imageName = md5($this->image.microtime().'.'.$this->image->extension());
-    
-                    Storage::putFileAs(
-                        'public/images',
-                        $this->image,
-                        $imageName
-                    );
+                    
+                    $image = $this->image;
+                    $imageName = md5($this->image.microtime().'.'.$this->image->extension());
+                    $image_resize = Image::make($image->getRealPath());
+                    $image_resize->resize(900,585);
+                    $image_resize->save(public_path('storage/images/'.$imageName));
+                    // Storage::putFileAs(
+                    //     'public/images',
+                    //     $this->image,
+                    //     $imageName
+                    // );
                 }
 
                 $product->update([

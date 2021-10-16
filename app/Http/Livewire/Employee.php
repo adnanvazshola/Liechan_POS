@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Carbon\Carbon;
-use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Employee as EmployeeModel;
 
 class Employee extends Component
@@ -15,6 +14,7 @@ class Employee extends Component
     public $detailEmployee = 0;
     public $titleForm = 'Add Employee';
     public $dates;
+    public $emit;
 
     public function render()
     {
@@ -93,6 +93,7 @@ class Employee extends Component
                 'date'       => $this->dates,
             ]);
         }
+        $this->emit('alert',['type' => 'success', 'message' => 'Comment added successfully']);
     }
 
     public function resetAbsen()

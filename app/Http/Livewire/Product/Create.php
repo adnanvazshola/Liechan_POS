@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Product as ProductModel;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class Create extends Component
 {
@@ -23,7 +24,8 @@ class Create extends Component
     public function store()
     {
         $this->validate([
-            'name'          => 'required|unique:products',
+            // 'name'          => 'required|unique:products',
+            'name'          => 'required',
             'image'         => 'required|image|mimes: jpg,jpeg,png',
             'price'         => 'required|numeric',
             'description'   => 'nullable',
@@ -34,13 +36,18 @@ class Create extends Component
             'name.required' => 'Nama ini telah ada.',
         ];
 
+        
+        $image = $this->image;
         $imageName = md5($this->image.microtime().'.'.$this->image->extension());
+        $image_resize = Image::make($image->getRealPath());
+        $image_resize->resize(900,585);
+        $image_resize->save(public_path('storage/images/'.$imageName));
 
-        Storage::putFileAs(
-            'public/images',
-            $this->image,
-            $imageName
-        );
+        // Storage::putFileAs(
+        //     'public/images',
+        //     $this->image,
+        //     $imageName
+        // );
 
         ProductModel::create([
             'name'          => $this->name,

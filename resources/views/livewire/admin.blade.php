@@ -67,7 +67,7 @@
                                         </span>
                                     @elseif($persentase == 0)
                                         <span class="text-warning">
-                                            <i class="fas fa-arrow-left mr-1"></i> {{ number_format($persentase,0,',','.') }}%
+                                            {{ number_format($persentase,0,',','.') }}%
                                         </span>
                                     @endif
                                     <span class="text-muted">sebulan terakhir</span>

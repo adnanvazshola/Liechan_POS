@@ -34,13 +34,18 @@ class Admin extends Component
         $pengeluaranLalu = TransactionModel::where('type', 0)->whereMonth('created_at', $today->format('m')-1)->sum('amount');
         $pendapatanBersihLalu = $pendapatanKotorLalu-$pengeluaranLalu;
 
-        $persentasePendapatan = ($pendapatanBersih-$pendapatanBersihLalu)/$pendapatanBersihLalu*100;
+        if($pendapatanBersih == 0){
+            $persentasePendapatan = 0;
+        }elseif($pendapatanBersihLalu == 0) {
+            $persentasePendapatan = 100;
+        }else{
+            $persentasePendapatan = ($pendapatanBersih-$pendapatanBersihLalu)/$pendapatanBersihLalu*100;
+        }
         $reservations = ReservationModel::where('date',$date)->orderBy('date', 'desc')->orderBy('time', 'asc')->get();
 
         $emptyMenu = ProductModel::with('productTransaction')->where('status',0)->orderBy('name','asc')->get();
         // $menu = explode($emptyMenu->productTransaction->quantity,',');
         // dd($menu);
-
         return view('livewire.admin', [
             'reservations'  => $reservations,
             'menu'          => $emptyMenu,

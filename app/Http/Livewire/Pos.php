@@ -41,11 +41,12 @@ class Pos extends Component
         }else {
             foreach ($items as $row) {
                 $cart[] = [
-                    'rowId' => $row->id,
-                    'name'  => $row->name,
-                    'qty'   => $row->quantity,
-                    'price'   => $row->price,
-                    'totalPrice' => $row->getPriceSum(),
+                    'rowId'         => $row->id,
+                    'name'          => $row->name,
+                    'description'   => $row->description,
+                    'qty'           => $row->quantity,
+                    'price'         => $row->price,
+                    'totalPrice'    => $row->getPriceSum(),
                 ];
             }
 
@@ -63,7 +64,7 @@ class Pos extends Component
             'tax'   => $pajak,
             'total' => $total,
         ];
-
+        // dd($cartData);
         return view('livewire.pos', [
             'makanan'   => $makanan,
             'minuman'   => $minuman,
@@ -91,10 +92,11 @@ class Pos extends Component
             $product = ProductModel::findOrFail($id);
             
             \Cart::session(Auth()->id())->add([
-                'id'    => 'Cart'.$product->id,
-                'name'  => $product->name,
-                'price' => $product->price,
-                'quantity'  => 1,
+                'id'            => 'Cart'.$product->id,
+                'name'          => $product->name,
+                'price'         => $product->price,
+                'description'   => $product->name,
+                'quantity'      => 1,
                 'attributes'    => [
                     'added_at'  => Carbon::now(),
                 ],

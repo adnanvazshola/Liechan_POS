@@ -4,8 +4,8 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="route('pos.index')">Point of Sales</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('pos.index') }}">Point of Sales</a></li>
                         <li class="breadcrumb-item active">Riwayat</li>
                     </ol>
                 </div>
@@ -26,6 +26,27 @@
                             <h6 class="card-title">Riwayat Pesanan</h6>
                         </div>
                         <div class="card-body">
+                            <div class="pr-3 pl-3 row">
+                                <div class="col-md-1 col-sm-12">
+                                    <label class="col-form-label">
+                                        Filter
+                                    </label>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-sm" wire:model="filterName" placeholder="Nama pemesan">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="date" class="form-control form-control-sm" wire:model="filterDate">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-12">
+                                    <button wire:click="resetFilter" class="btn btn-sm btn-block btn-danger">Reset Filter</button>
+                                </div>
+                            </div>
+                            <hr class="w-100">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -43,6 +64,11 @@
                                             <td>{{ $row->created_at->translatedFormat('d F Y') }} || {{ $row->created_at->format('H:i') }}</td>
                                             <td>
                                                 <button wire:click="show({{ $row->id }})" class="btn btn-sm btn-outline-success">Detail</button>
+                                                @if(Auth::user()->role == 'admin')
+                                                    <button wire:click="destroy({{$row->id}})" class="btn btn-sm btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                @endif
                                             </td>
                                         </tr>
                                     @empty

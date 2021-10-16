@@ -179,6 +179,8 @@ return [
         Darryldecode\Cart\CartServiceProvider::class,
         //SweetAlert
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        //Image
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -232,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

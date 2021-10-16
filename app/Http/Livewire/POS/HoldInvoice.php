@@ -28,6 +28,7 @@ class HoldInvoice extends Component
             return [
                 'product_id'    => $item->product_id,
                 'name'          => $item->product->name,
+                'description'   => $item->product->description,
                 'singlePrice'   => $item->product->price,
                 'quantity'      => $item->quantity,
             ];

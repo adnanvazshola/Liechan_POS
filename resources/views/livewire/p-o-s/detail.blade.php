@@ -9,10 +9,10 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-5">
+            <div class="col-6">
                 <b>Menu</b>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <b>Qty</b>
             </div>
             <div class="col-4">
@@ -22,13 +22,18 @@
         <hr>
         @foreach ($cartItem as $row)
             <div class="row">
-                <div class="col-5">
+                <div class="col-6">
                     {{ $row['name'] }}<br>
+                    @if ($row['description'])
+                        <figcaption class="blockquote-footer">
+                            {{ $row['description'] }}
+                        </figcaption>
+                    @endif
                     <figcaption class="blockquote-footer">
                         Rp. {{ number_format($row['singlePrice'],0,',','.') }}
                     </figcaption>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     x{{ $row['quantity'] }}
                 </div>
                 @php

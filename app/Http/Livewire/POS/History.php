@@ -5,6 +5,7 @@ namespace App\Http\Livewire\POS;
 use Livewire\Component;
 use App\Models\ProductTransaction;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Livewire\WithPagination;
 
 class History extends Component
@@ -15,14 +16,33 @@ class History extends Component
     public $id_transaction, $invoice, $amount, $date, $id_product, $name, $quantity, $productPrice, $totalProductPrice, $status, $to;
     public $cartItem;
     public $detailOrder = 0;
+    public $filterName = '';
+    public $filterDate = '';
+    // public $now = Carbon::now();
+    public $current_date = '';
 
     public function render()
     {
-        $historyOrders = Transaction::with('product')->orderBy('created_at', 'desc')->where('type', 3)->where('status', 1)->paginate(10);
+        // $dates = Carbon::now();
+        // $date = $dates->format('d/m/Y');
+        // $this->filterDate = $date;
+        $historyOrders = Transaction::with('product')
+                            ->orderBy('created_at', 'desc')
+                            ->where('type', 3)
+                            ->where('status', 1)
+                            ->where('to', 'like', '%'.$this->filterName.'%')
+                            ->where('created_at', 'like', '%'.$this->filterDate.'%')
+                            ->paginate(10);
         
         return view('livewire.p-o-s.history',[
             'historyOrders' => $historyOrders,
         ]);
+    }
+
+    public function resetFilter()
+    {
+        $this->filterName = '';
+        $this->filterDate = '';
     }
 
     public function show($id)
@@ -33,6 +53,7 @@ class History extends Component
             return [
                 'product_id'    => $item->product_id,
                 'name'          => $item->product->name,
+                'description'   => $item->product->description,
                 'singlePrice'   => $item->product->price,
                 'quantity'      => $item->quantity,
             ];
@@ -62,6 +83,17 @@ class History extends Component
     public function closeDetail()
     {
         $this->detailOrder = false;
+    }
+
+    public function destroy($id)
+    {
+        $order = Transaction::find($id);
+        $order->delete();
+        $ordersItem = ProductTransaction::where('invoice', $order->invoice)->get();
+        foreach ($ordersItem as $row) {
+            $orderItem = ProductTransaction::where('invoice', $row->invoice)->first();
+            $orderItem->delete();
+        }
     }
 
     public function back()

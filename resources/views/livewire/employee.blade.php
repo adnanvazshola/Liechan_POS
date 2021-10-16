@@ -89,7 +89,7 @@
                                             @if ($row->date != \Carbon\Carbon::now()->format('Y-m-d'))
                                                 <button wire:click="absen({{$row->id}})" class="btn btn-sm btn-outline-success">Absen</button>
                                             @endif
-                                            <button wire:click="edit({{$row->id}})" class="btn btn-sm btn-outline-warning">
+                                            <button wire:click="edit({{$row->id}})" class="btn btn-sm btn-outline-warning" data-toggle="tooltip" data-placement="top" title="Hapus">
                                                 <i class="far fa-edit"></i>
                                             </button>
                                             <button wire:click="destroy({{$row->id}})" class="btn btn-sm btn-outline-danger">
@@ -111,3 +111,10 @@
         </div>
     </section>
 </div>
+@push('js')
+    <script>
+        window.livewire.on('alert', param => {
+	        toastr[param['type']](param['message'],param['type']);
+        });
+    </script>    
+@endpush
