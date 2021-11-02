@@ -175,8 +175,8 @@
         @livewireScripts
         <script src="{{ asset('adminLTE/plugins/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('adminLTE/dist/js/adminlte.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
+        {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+        {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script> --}}
         @stack('js')
         <script src="{{ asset('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('adminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
